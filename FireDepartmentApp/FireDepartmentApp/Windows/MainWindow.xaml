@@ -1,0 +1,46 @@
+﻿<Window x:Class="FireDepartmentApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:FireDepartmentApp"
+        mc:Ignorable="d"
+        Title="Автоматизированное рабочее место диспетчера пожаро-спасательного гарнизона Республики Татарстан" Height="800" Width="800" WindowStartupLocation="CenterScreen"
+        WindowState="Maximized" MinHeight="800" MinWidth="1300" Closed="Window_Closed" Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ToolBarTray Background="WhiteSmoke">
+            <ToolBar Background="WhiteSmoke"
+    ClipToBounds="False" 
+    Style="{StaticResource MaterialDesignToolBar}">
+                <Button x:Name="BtnNewDoc" 
+      Click="BtnNewDoc_Click"
+      Content="{materialDesign:PackIcon Kind=FileDocument}"
+      ToolTip="Создать новый документ" />
+                <Button x:Name="BtnOpenDoc"
+      Content="{materialDesign:PackIcon Kind=FolderOpenOutline}"
+      ToolTip="Открыть документ"  Click="BtnOpenDoc_Click"/>
+                <Button x:Name="BtnSaveDoc" Click="BtnSaveDoc_Click" Content="{materialDesign:PackIcon Kind=ContentSave}" ToolTip="Сохранить документ"/>
+                <Separator />
+                <Button x:Name="BtnWaybill" Click="BtnWaybill_Click" Content="{materialDesign:PackIcon Kind=FileAccount}" ToolTip="Путевой лист"/>
+                <Button x:Name="BtnAction" Click="BtnAction_Click" Content="{materialDesign:PackIcon Kind=FileDocumentArrowRight}" ToolTip="В дело"/>
+                <Separator/>
+                <Button x:Name="BtnDirectoryEdit" Click="BtnDirectoryEdit_Click" Content="{materialDesign:PackIcon Kind=FileEdit}" ToolTip="Редактировать справочники"/>
+                <Button x:Name="BtnOptions" Click="BtnOptions_Click" Content="{materialDesign:PackIcon Kind=Cog}" ToolTip="Настройки приложения"/>
+                <Separator/>
+                <Button x:Name="BtnExit" Click="BtnExit_Click" Content="{materialDesign:PackIcon Kind=ExitToApp}" ToolTip="Выход"/>
+                
+            </ToolBar>
+        </ToolBarTray>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+            <Button x:Name="BtnListDepart" Click="BtnListDepart_Click" Content="{materialDesign:PackIcon Kind=ListBox}" ToolTip="Список выездов" Margin="10"/>
+            <Button x:Name="BtnBack" Click="BtnBack_Click" Content="{materialDesign:PackIcon Kind=ArrowBack}"  ToolTip="Назад"
+                Margin="10" Visibility="Visible"/>
+        </StackPanel>
+        <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentRendered"/>
+    </Grid>
+</Window>

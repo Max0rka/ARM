@@ -1,0 +1,991 @@
+﻿<Window x:Class="FireDepartmentApp.Windows.AddOrEditWindow.AddInfoPlaceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FireDepartmentApp.Windows.AddOrEditWindow" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Информация" Height="820" Width="1000" MinHeight="820" MinWidth="1000" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="270"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="MaxHeight" Value="37"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="450"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TreeView x:Name="TreeViewPlaceInfo" SelectedItemChanged="TreeViewPlaceInfo_SelectedItemChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <TreeViewItem Header="ЦППС - РТП">
+                <TreeViewItem Header="Уточняющая информация  по месту (адресу) вызова" x:Name="TVItem1" Selected="TVItem1_Selected" Unselected="TVItem1_Unselected"/>
+                <TreeViewItem Header="Запрос уточняющей информации с места пожара" x:Name="TVItem2" Selected="TVItem1_Selected" Unselected="TVItem1_Selected"/>
+                <TreeViewItem Header="Продолжить движение к месту пожара" Selected="TVItem1_Selected" Unselected="TVItem1_Selected"/>
+                <TreeViewItem Header="Службы жизнеобеспечения к месту вызова высланы" Selected="TVItem1_Selected" Unselected="TVItem1_Selected"/>
+                <TreeViewItem Header="Силам, следующим к месту пожара">
+                    <TreeViewItem Header="Поторопиться" Selected="TVItem2_Selected" Unselected="TVItem2_Unselected"/>
+                    <TreeViewItem Header="Отбой, возвращайтесь в часть" Selected="TVItem2_Selected" Unselected="TVItem2_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="К месту вызова направлены дополнительно" x:Name="TVItemServices" Selected="TVItemServices_Selected" Unselected="TVItemServices_Unselected"/>
+                <TreeViewItem Header="Организован сбор личного состава и введение в расчет резервной техники" Selected="TVItem1_Selected" Unselected="TVItem1_Unselected"/>
+            </TreeViewItem>
+            
+            <TreeViewItem Header="Остановлено движение" >
+                <TreeViewItem x:Name="TVItem2span" Header="Автомобильная пробка" Selected="TVItem2span_Selected" Unselected="TVItem2span_Unselected"/>
+                <TreeViewItem Header="Закрыт железнодорожный переезд" Selected="TVItem2span_Selected" Unselected="TVItem2span_Unselected"/>
+                <TreeViewItem Header="Отсутствует проезд к месту пожара, продвигаемся пешком" Selected="TVItem2span_Selected" Unselected="TVItem2span_Unselected"/>
+                <TreeViewItem Header="Иное" x:Name="TVItemOther" Selected="TVItemOther_Selected" Unselected="TVItemOther_Unselected"/>
+            </TreeViewItem>
+            
+            <TreeViewItem Header="В пути следования наблюдаю дым" x:Name="TVItemSmoke" Selected="TVItemSmoke_Selected" Unselected="TVItemSmoke_Unselected"/>
+
+            <TreeViewItem Header="Подъезжаю к месту вызова">
+                <TreeViewItem Header="Затруднен проезд к месту пожара (вызова)">
+                    <TreeViewItem Header="Припаркованные автомобили" x:Name="TVItemAllItem" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Закрыт проезд (блоки, шлагбаум)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Нет проезда (совершаю объезд)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Вижу открытый огонь (выделение густого дыма)">
+                    <TreeViewItem Header="Вызов (ранг) пожара">
+                        <TreeViewItem Header="№ 1" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="№ 1 БИС" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="№ 2" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="№ 3" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="№ 4" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="№ 5" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Службы жизнеобеспечения к месту вызова" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="По внешним признакам ничего не наблюдаю, не встречают" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+            </TreeViewItem>
+            <TreeViewItem Header="По результатам разведки по внешним признакам">
+                <TreeViewItem Header="Объект пожара">
+                    <TreeViewItem Header="Объект жилого назначения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Производственное здание" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Складское здание" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Здание,  сооружение для хранения автомобилей и других колесных транспортных средств" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Места открытого хранения веществ, материалов, сельхоз угодья и прочие открытые территории" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Здания жилого назначения  надворные постройки" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Здания, сооружения сельскохозяйственного назначения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Строящиеся (реконструируемые) здания (сооружения)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Сооружения, установки промышленного назначения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Свой вариант" x:Name="TVItemOtherObject" Selected="TVItemOtherObject_Selected" Unselected="TVItemOtherObject_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Место пожара">
+                    <TreeViewItem Header="Помещение в здании (сооружении)" x:Name="TVItemRoomBuild" Selected="TVItemRoomBuild_Selected" Unselected="TVItemRoomBuild_Unselected"/>
+                    <TreeViewItem Header="Инженерные коммуникации здания (сооружения)">
+                        <TreeViewItem Header="Галерея, эстакада" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Пневмотранспортная коммуникация" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Шахта дымоудаления, воздуховод" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Мусоропровод" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Лифт" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Шахта лифта" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Свой вариант" Selected="TVItemOtherObject_Selected" Unselected="TVItemOtherObject_Unselected"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Отсек транспортного средства">
+                        <TreeViewItem Header="Кабина водителя, машиниста" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Пассажирское, служебное купе" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Салон, кузов" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Внутри грузового вагона, спецвагона" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Отсек двигателя" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Свой вариант" Selected="TVItemOtherObject_Selected" Unselected="TVItemOtherObject_Unselected"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Открытая технологическая установка">
+                        <TreeViewItem Header="Наружная технологическая установка" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Емкость, резервуар, бункер" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Открытая эстакада и галерея" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Свой вариант" Selected="TVItemOtherObject_Selected" Unselected="TVItemOtherObject_Unselected"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Вне здания (сооружения), открытая территория">
+                        <TreeViewItem Header="Лесной массив" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Лесопарковая зона" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Поле" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Наружный щит, реклама, фасад, стена здания" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Место на открытой территории, прилегающей к зданию" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Лесной массив, лесопарк, лесополоса и т.п." Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Прочее место на открытой территории" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Двор на территории домовладения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Иная территория домовладения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Двор многоквартирного жилого дома" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Школьная площадка" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Площадь на территории населенного пункта, пешеходная дорожка, зона, тротуар" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Плодовый (фруктовый) сад" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Открытая стоянка автотранспорта и другой техники (вне территории двора)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Автомобильная трасса, дорога, автомагистраль" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Полоса отчуждения, обочина дороги, луг, пустырь" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Сельскохозяйственное поле" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Территория свалки бытовых и промышленных отходов вне жилой зоны и территории предприятия, организации, учреждения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Площадка для мусора на территории жилой зоны" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Площадка для мусора на территории предприятия, организации, учреждения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Иная территория предприятия, организации, учреждения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="В контейнерах для сбора мусора (урнах)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="На контейнерной площадке" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Свой вариант" Selected="TVItemOtherObject_Selected" Unselected="TVItemOtherObject_Unselected"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Не установлено" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Наблюдаю на месте пожара">
+                    <TreeViewItem Header="Интенсивное открытое горение" x:Name="TVItemSeeFirePlace" Selected="TVItemSeeFirePlace_Selected" Unselected="TVItemSeeFirePlace_Unselected"/>
+                    <TreeViewItem Header="Выделение густого дыма, открытого горения не наблюдаю" Selected="TVItemSeeFirePlace_Selected" Unselected="TVItemSeeFirePlace_Unselected"/>
+                    <TreeViewItem Header="Выделение густого дыма и открытое горение" Selected="TVItemSeeFirePlace_Selected" Unselected="TVItemSeeFirePlace_Unselected"/>
+                    <TreeViewItem Header="Свой вариант" Selected="TVItemOtherObject_Selected" Unselected="TVItemOtherObject_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Пути распространения пожара">
+                    <TreeViewItem Header="Ферма, балка, прогон" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Крыша" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Потолочное перекрытие (подвесной потолок)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Стена, перегородка" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Оконный блок" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Дверь, ворота, люк" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Пол" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Настил, в том числе с утеплителем" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Лестничный марш, площадка" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Бесчердачное покрытие" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Кровля" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Сухая трава" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Жидкость ЛВЖ, ГЖ" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Устанавливается в ходе дальнейшей разведки" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Свой вариант" Selected="TVItemOtherObject_Selected" Unselected="TVItemOtherObject_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Наличие людей в горящем здании">
+                    <TreeViewItem Header="По информации от очевидцев (встречающих), представителя организации">
+                        <TreeViewItem Header="Имеются" x:Name="TVItemPeopleFireBuild" Selected="TVItemPeopleFireBuild_Selected" Unselected="TVItemPeopleFireBuild_Unselected"/>
+                        <TreeViewItem Header="Очевидцы не обладают информацией" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Отсутствуют" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Встречающих очевидцев (персонала) нет, уточнить не представляется возможным" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Противопожарные характеристики объекта пожара">
+                    <TreeViewItem Header="Степень огнестойкости здания" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected">
+                        <TreeViewItem Header="I  степени огнестойкости" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="II  степени огнестойкости" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="III  степени огнестойкости" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="IV  степени огнестойкости" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="V  степени огнестойкости" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Этажность здания" x:Name="TVItemFloor" Selected="TVItemFloor_Selected" Unselected="TVItemFloor_Unselected"/>
+                    <TreeViewItem Header="В результате пожара произошла сработка" x:Name="TVItemSystemTypes" Selected="TVItemSystemTypes_Selected" Unselected="TVItemSystemTypes_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Информация об оставшихся людях в здании">
+                    <TreeViewItem Header="По информации от очевидцев (персонала) в здании остались люди. Возможно нахождение людей" x:Name="TVItemStayedBuild"
+                                      Selected="TVItemStayedBuild_Selected" Unselected="TVItemStayedBuild_Unselected"/>
+                    <TreeViewItem Header="По информации от очевидцев (персонала) в здании людей нет." Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Очевидцы (персонал) информацией о наличие людей в здании не обладают." Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="На месте пожара очевидцев нет, никто не встречает. Источников получения информации о наличии людей нет." Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Наблюдаю проведение самостоятельной эвакуации людей" >
+                        <TreeViewItem Header="Через центральный вход" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Через оконные проемы" >
+                            <TreeViewItem Header="Первого этажа" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                            <TreeViewItem Header="Второго этажа" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                            <TreeViewItem Header="Свой вариант" Selected="TVItemOtherObject_Selected" Unselected="TVItemOtherObject_Unselected"/>
+                        </TreeViewItem>
+                        <TreeViewItem Header="По эвакуационным путям" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    </TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="Ранг вызова по итогам разведки по внешним признакам">
+                    <TreeViewItem Header="Ранг пожара (вызова) № 1 подтверждаю, дополнительных сил и средств не требуется." Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Вызвать к месту вызова дополнительно АЛ (АКП)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Ранг (вызова) пожара">
+                        <TreeViewItem Header="1 БИС" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="2" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="3" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="4" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="5" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    </TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="Вызов служб к месту вызова">
+                    <TreeViewItem Header="Вызвать к месту вызова" x:Name="TVItemServices2" Selected="TVItemServices2_Selected" Unselected="TVItemServices2_Unselected"/>
+                    <TreeViewItem Header="Дополнительный вызов служб к месту не требуется" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+            </TreeViewItem>
+            <TreeViewItem Header="По результатам разведки места пожара">
+                <TreeViewItem Header="Пригорание пищи. Сбор ПТВ, возвращаемся в часть" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Вызов ложный">
+                    <TreeViewItem Header="Проведено обследование мест возможного пожара, ничего не обнаружено. Сбор ПТВ, возвращаемся в часть" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Сработка АПС, помещения обследованы, ничего не обнаружено. Сбор ПТВ, возвращаемся в часть" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Короткое замыкание без горения">
+                    <TreeViewItem Header="Электрощитовой" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="В силовой распределительной  коробки" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="В бытовом электроприборе" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Электропроводов в розетке" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Трансформатора в ТП" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Свой вариант" Selected="TVItemOtherObject_Selected" Unselected="TVItemOtherObject_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Зона пожара">
+                    <TreeViewItem Header="В помещениях, зданиях, сооружениях" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="На территории населенного пункта" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="На открытых участках местности" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Границы территории на которой ведутся боевые действия">
+                    <TreeViewItem Header="Участок здания (сооружения)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Имеется угроза распространения">
+                    <TreeViewItem Header="Смежное помещение" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Соседнее здание" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="По площади этажа" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Коридор" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Вышележащие этажи" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Нижележащие этажи" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="На кровлю здания" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Номер (ранг) вызова пожара">
+                    <TreeViewItem Header="Ранг пожара (вызова) № 1 подтверждаю, дополнительных сил и средств не требуется." Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Ранг (вызова) пожара">
+                        <TreeViewItem Header="1 БИС" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="2" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="3" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="4" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="5" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    </TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="Решающее направление">
+                    <TreeViewItem Header="силы и средства, направляю на спасение людей" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="силы и средства, направляю на спасение участников тушения пожара" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="силы и средства, направляю на предотвращение взрыва и минимизацию его последствия" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="силы и средства, направляю на предотвращение обрушения и минимизацию его последствия" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="силы и средства, направляю на предотвращение дальнейшего распространения пожара" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="силы и средства, направляю на ликвидацию пожара в отдельно стоящем здании (сооружении, установки)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="силы и средства направляю на предотвращение распространения пожара на соседнее здание (сооружение, установку)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="силы и средства направляю на предотвращение распространения природного (ландшафтного) пожара на населенный пункт (объект)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="силы и средства направляю на спасение и защиту животных от ОФП" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Площадь пожара" x:Name="TVItemFireArea" Selected="TVItemFireArea_Selected" Unselected="TVItemFireArea_Unselected"/>
+                <TreeViewItem Header="На месте пожара организован воздухообмен">
+                    <TreeViewItem Header="с использованием дымососа">
+                        <TreeViewItem Header="путем нагнетания воздуха" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="путем удаления дыма" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="комбинированным способом" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="с использованием оконных и дверных проемов (создание конвекционных потоков)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Привлечение дополнительных СиС местного звена ТП РСЧС">
+                    <TreeViewItem Header="Вызвать к месту вызова" Selected="TVItemServices2_Selected" Unselected="TVItemServices2_Unselected"/>
+                    <TreeViewItem Header="Дополнительный вызов служб к месту не требуется" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Переход на резервный канал связи">
+                    <TreeViewItem Header="организован" Selected="TVItemServices2_Selected" Unselected="TVItemServices2_Unselected"/>
+                    <TreeViewItem Header="не требуется" Selected="TVItemServices2_Selected" Unselected="TVItemServices2_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Создание оперативного штаба на месте пожара">
+                    <TreeViewItem Header="Начальник штаба, тыла" x:Name="TVItemChiefStaffRear" Selected="TVItemChiefStaffRear_Selected" Unselected="TVItemChiefStaffRear_Unselected"/>
+                    <TreeViewItem Header="Начальник КПП ГДЗС" x:Name="TVItemChiefKPP" Selected="TVItemChiefKPP_Selected" Unselected="TVItemChiefKPP_Unselected"/>
+                    <TreeViewItem Header="Начальник БУ (СПР)" x:Name="TVItemChiefBY" Selected="TVItemChiefBY_Selected" Unselected="TVItemChiefBY_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Расстановка прибывающих сил и средств" x:Name="TVItemForces" Selected="TVItemForces_Selected" Unselected="TVItemForces_Unselected"/>
+                <TreeViewItem Header="Установлен сигнал на отход в случаи возникновения опасности для участников тушения пожара" x:Name="TVItemConfirm" Selected="TVItemConfirm_Selected" Unselected="TVItemConfirm_Unselected"/>
+                <TreeViewItem Header="Создание резерва сил и средств">
+                    <TreeViewItem Header="Создать резерв" x:Name="TVItemCreateReserve" Selected="TVItemCreateReserve_Selected" Unselected="TVItemCreateReserve_Unselected"/>
+                    <TreeViewItem Header="Организовать сбор личного состава свободного от несения службы" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Выдвинуть к месту пожара силы и средства сформированных ко сбору личного состава" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Информация по пострадавшим (погибшим)">
+                    <TreeViewItem Header="Пострадавший (пострадавшие)">
+                        <TreeViewItem Header="Поторопить автомобиль БСМП" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Дополнительно направить к месту автомобиль БСМП" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Самостоятельно покинули зону ОФП" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Выведены на свежий воздух в сопровождении сотрудников ПО" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Выведены на свежий воздух соседями (очевидчами)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                        <TreeViewItem Header="Переданы бригаде скорой помощи" x:Name="TVItemPeopleCount" Selected="TVItemPeopleCount_Selected" Unselected="TVItemPeopleCount_Unselected"/>
+                        <TreeViewItem Header="От госпитализации отказались" Selected="TVItemPeopleCount_Selected" Unselected="TVItemPeopleCount_Unselected"/>
+                        <TreeViewItem Header="Отправлены на автомобиле БСМП в ЦРБ" Selected="TVItemPeopleCount_Selected" Unselected="TVItemPeopleCount_Unselected"/>
+                        <TreeViewItem Header="Данные о пострадавшем" x:Name="TVItemDataPeople" Selected="TVItemDataPeople_Selected" Unselected="TVItemDataPeople_Unselected"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Погибший (погибшие)" x:Name="TVItemDataDeadPeople" Selected="TVItemDataDeadPeople_Selected" Unselected="TVItemDataDeadPeople_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Дополнительная информация по спасенным гражданам" x:Name="TVItemRescuedPeople" Selected="TVItemRescuedPeople_Selected" Unselected="TVItemRescuedPeople_Unselected"/>
+                <TreeViewItem Header="Характеристика здания (объекта) уточненная" x:Name="TVItemCharactBuild" Selected="TVItemCharactBuild_Selected" Unselected="TVItemCharactBuild_Unselected"/>
+                <TreeViewItem Header="Характеристика многоквартирного дома" x:Name="TVItemCharactHome" Selected="TVItemCharactHome_Selected" Unselected="TVItemCharactHome_Unselected"/>
+                <TreeViewItem Header="Последствия пожара" x:Name="TVItemAftermathFire" Selected="TVItemAftermathFire_Selected" Unselected="TVItemAftermathFire_Unselected"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Спасенные и эвакуированные при пожаре">
+                <TreeViewItem Header="Самостоятельный выход из зоны ОФП" x:Name="TVItemGeneralEvac" Selected="TVItemGeneralEvac_Selected" Unselected="TVItemGeneralEvac_Unselected"/>
+                <TreeViewItem Header="Эвакуировано пожарными"  Selected="TVItemGeneralEvac_Selected" Unselected="TVItemGeneralEvac_Unselected"/>
+                <TreeViewItem Header="Спасено">
+                    <TreeViewItem Header="Населением (очевидцами)" x:Name="TVItemRescued" Selected="TVItemRescued_Selected" Unselected="TVItemRescued_Unselected"/>
+                    <TreeViewItem Header="Сотрудниками (работниками) ПО" x:Name="TVItemRescuedWorker" Selected="TVItemRescuedWorker_Selected" Unselected="TVItemRescuedWorker_Unselected"/>
+                </TreeViewItem>
+            </TreeViewItem>
+        </TreeView>
+        <StackPanel x:Name="SPanelOther" Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <TextBlock Text="Свой вариант" Margin="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="TbOther"  />
+        </StackPanel>
+        <StackPanel x:Name="SPanelSmoke" Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <TextBlock Text="Номер (ранг) вызова" Margin="5" VerticalAlignment="Center"/>
+            <ComboBox Name="ComboSmoke" Width="100">
+                <ComboBoxItem Content="1"/>
+                <ComboBoxItem Content="1 БИС"/>
+                <ComboBoxItem Content="2"/>
+                <ComboBoxItem Content="3"/>
+                <ComboBoxItem Content="4"/>
+                <ComboBoxItem Content="5"/>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel x:Name="SPanelServices" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <CheckBox x:Name="CBoxGIBDD" Margin="5" Content="экипаж ГИБДД"/>
+            <CheckBox x:Name="CBoxElect" Margin="5" Content="бригада электриков"/>
+            <CheckBox x:Name="CBoxGas" Margin="5" Content="бригада горгаза"/>
+            <CheckBox x:Name="CBoxLadder" Margin="5" Content="автолестница"/>
+        </StackPanel>
+        <StackPanel x:Name="SPanelInBuilding" Orientation="Vertical" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <TextBlock Text="Место пожара" Margin="5" VerticalAlignment="Center"/>
+            <ComboBox Name="ComboInBuildings"  Width="480">
+                <ComboBoxItem Content="Комната, жилое, спальное помещение, палата"/>
+                <ComboBoxItem Content="Балкон, лоджия"/>
+                <ComboBoxItem Content="Ванная, душевая, туалет"/>
+                <ComboBoxItem Content="Коридор"/>
+                <ComboBoxItem Content="Кухня"/>
+                <ComboBoxItem Content="Лестничная клетка"/>
+                <ComboBoxItem Content="Подвальное помещение"/>
+                <ComboBoxItem Content="Чердачное помещение"/>
+                <ComboBoxItem Content="Административное, служебное помещение, кабинет"/>
+                <ComboBoxItem Content="Офисное помещение"/>
+                <ComboBoxItem Content="Веранда, терраса, тамбур"/>
+                <ComboBoxItem Content="Пристройка к зданию"/>
+                <ComboBoxItem Content="Сауна, парилка"/>
+                <ComboBoxItem Content="Электрощитовая"/>
+                <ComboBoxItem Content="Гардероб, раздевалка"/>
+                <ComboBoxItem Content="Почтовый ящик"/>
+                <ComboBoxItem Content="Помещение котельной, теплогенерирующих и др. вспомогательных установок"/>
+                <ComboBoxItem Content="Подсобное помещение"/>
+                <ComboBoxItem Content="Основное производственное помещение, цех"/>
+                <ComboBoxItem Content="Подсобные и вспомогательные производственные помещения"/>
+                <ComboBoxItem Content="Помещение для хранения и ремонта транспорта (гараж)"/>
+                <ComboBoxItem Content="Складское помещение, кладовая"/>
+                <ComboBoxItem Content="Лабораторное помещение"/>
+                <ComboBoxItem Content="Фойе, вестибюль"/>
+                <ComboBoxItem Content="Курительная комната"/>
+                <ComboBoxItem Content="Ванная, душевая, туалет"/>
+                <ComboBoxItem Content="Сауна, парилка"/>
+                <ComboBoxItem Content="Зал ЭВМ"/>
+                <ComboBoxItem Content="Торговый зал, операционный зал почты, биржи, банка и пр."/>
+                <ComboBoxItem Content="Зал ожидания"/>
+                <ComboBoxItem Content="Коммуникационный тоннель и коллектор"/>
+                <ComboBoxItem Content="Кабельный тоннель и полуэтаж"/>
+                <ComboBoxItem Content="Тамбур-шлюз"/>
+                <ComboBoxItem Content="Помещения для содержания животных, птицы"/>
+                <ComboBoxItem Content="Кормокухня"/>
+                <ComboBoxItem Content="Класс, аудитория, читальный зал"/>
+                <ComboBoxItem Content="Киноаппаратная"/>
+                <ComboBoxItem Content="Зрительный зал, зал заседаний"/>
+                <ComboBoxItem Content="Сцена"/>
+                <ComboBoxItem Content="Буфет, бар"/>
+                <ComboBoxItem Content="Зал экспозиции музея, выставки"/>
+                <ComboBoxItem Content="Радиоузел"/>
+                <ComboBoxItem Content="Хранилище архива, библиотеки"/>
+            </ComboBox>
+            <TextBlock Text="Прочие помещения" Margin="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="TbOtherRoom"  Width="400" HorizontalContentAlignment="Center"/>
+        </StackPanel>
+        <StackPanel x:Name="SPanelSeeFirePlace" Orientation="Vertical" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <TextBlock Text="Этаж" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox x:Name="TbFloor"  Width="70" HorizontalAlignment="Left" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            <TextBlock Text="Место наблюдения" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <ComboBox Name="ComboSeeFirePlace"  Width="230" HorizontalAlignment="Left">
+                <ComboBoxItem Content="в подвальном помещении"/>
+                <ComboBoxItem Content="на кровле здания"/>
+                <ComboBoxItem Content="в чердачном помещении"/>
+                <ComboBoxItem Content="фасада здания"/>
+            </ComboBox>
+            <TextBlock Text="Свой вариант" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox x:Name="TbOtherFirePlace"  Width="230" HorizontalAlignment="Left"/>
+        </StackPanel>
+        <StackPanel x:Name="SPanelPeopleFireBuild" Orientation="Vertical" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <TextBlock Text="Количество" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox x:Name="TbPeopleCount"  Width="70" HorizontalAlignment="Left" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            <TextBlock Text="Возможное местонахождение" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox x:Name="TbPeoplePlace"  Width="230" HorizontalAlignment="Left"/>
+            <CheckBox Name="CBoxUnknown" Content="Точная информация о количестве и месте нахождения отсутствует "/>
+            <TextBlock Text="Состояние людей внутри здания" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <ComboBox Name="ComboPeopleStatus"  Width="390" HorizontalAlignment="Left" >
+                <ComboBoxItem Content="Находятся предварительно в безопасном месте"/>
+                <ComboBoxItem Content="Находятся предварительно в зоне воздействия ОФП"/>
+                <ComboBoxItem Content="Не выходят на связь"/>
+                <ComboBoxItem Content="Не обладают информацией"/>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel x:Name="SPanelFloor" Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <TextBlock Text="Этажность здания" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox x:Name="TbFloorBuild"  Width="70" HorizontalAlignment="Left" PreviewTextInput="TbFloor_PreviewTextInput"/>
+        </StackPanel>
+        <StackPanel x:Name="SPanelSystemTypes" Orientation="Vertical" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Системы пожаротушения" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                <RadioButton x:Name="RBFireSystemYes" GroupName="FireSystem" Content="Да"/>
+                <RadioButton x:Name="RBFireSystemNo" GroupName="FireSystem" Content="Нет"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Системы дымоудаления" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                <RadioButton x:Name="RBSmokeSystemYes" GroupName="SmokeSystem" Content="Да"/>
+                <RadioButton x:Name="RBSmokeSystemNo" GroupName="SmokeSystem" Content="Нет"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Системы сигнализации" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                <RadioButton x:Name="RBNotifySystemYes" GroupName="NotifySystem" Content="Да"/>
+                <RadioButton x:Name="RBNotifySystemNo" GroupName="NotifySystem" Content="Нет"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="SPanelStayedBuild" Orientation="Vertical" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <TextBlock Text="Количество" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox x:Name="TbStayedPeopleCount"  Width="70" HorizontalAlignment="Left" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            <TextBlock Text="Местонахождение" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <ComboBox Name="ComboStayedPeoplePlace"  Width="230" HorizontalAlignment="Left" >
+                <ComboBoxItem Content="в комнате"/>
+                <ComboBoxItem Content="в подвале"/>
+                <ComboBoxItem Content="в подсобном помещении"/>
+            </ComboBox>
+            <TextBlock Text="Свой выбор (местонахождение)" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox x:Name="TbOtherPeoplePlace"  Width="230" HorizontalAlignment="Left"/>
+            <TextBlock Text="Состояние людей по информации очевидцев" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <ComboBox Name="ComboStayedPeopleStatus"  Width="300" HorizontalAlignment="Left" >
+                <ComboBoxItem Content="удовлетворительное, выходят на связь"/>
+                <ComboBoxItem Content="информацией не обладают"/>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel x:Name="SPanelServices2" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <CheckBox x:Name="CBoxAmbulance" Margin="5" Content="скорую помощь"/>
+            <CheckBox x:Name="CBoxEnergy" Margin="5" Content="энергослужбу"/>
+            <CheckBox x:Name="CBoxGas2" Margin="5" Content="газовую службу"/>
+            <CheckBox x:Name="CBoxGIBDD2" Margin="5" Content="ГИБДД для ограничения движения ТС"/>
+            <CheckBox x:Name="CBoxVodokanal" Margin="5" Content="службу водоканала"/>
+            <CheckBox x:Name="CBoxPPS" Margin="5" Content="патрульно-постовую службу для оцепления места пожара"/>
+        </StackPanel>
+        <StackPanel x:Name="SPanelFireArea" Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <TextBlock Text="Площадь горения" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox x:Name="TbFireArea"  Width="100" HorizontalAlignment="Left" PreviewTextInput="TbFloor_PreviewTextInput"/>
+        </StackPanel>
+        <StackPanel x:Name="SPanelChiefStaffRear" Orientation="Vertical" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Начальник штаба" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbChiefStaff"  Width="230" HorizontalAlignment="Left"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Начальник тыла" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbChiefRear"  Width="230" HorizontalAlignment="Left"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Ответственный за охрану труда" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbChiefWork"  Width="230" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="SPanelChiefKPP" Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <TextBlock Text="Начальник КПП ГДЗС" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+            <TextBox x:Name="TbChiefKPP"  Width="230" HorizontalAlignment="Left"/>
+        </StackPanel>
+        <StackPanel x:Name="SPanelChiefBY" Orientation="Vertical" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Участок по тушению пожара" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbAreaFire"  Width="230" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Участок по защите" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbSecurity"  Width="230" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Участок по организации спасения людей" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbRescuePeople"  Width="230" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Участок по организации спасения имущества" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbAreaSecurity"  Width="230" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Участок по проведению АСР" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbACP"  Width="230" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="SPanelCreateReserve" Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <WrapPanel Width="500">
+                <TextBlock Text="Создан резерв сил и средств на месте пожара в составе" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBox x:Name="TbPeopleReserve"  Width="40" HorizontalAlignment="Left" PreviewTextInput="TbFloor_PreviewTextInput"/>
+                <TextBlock Text="человек личного состава, из них" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBox x:Name="TbPeopleGas"  Width="40" HorizontalAlignment="Left" PreviewTextInput="TbFloor_PreviewTextInput"/>
+                <TextBlock Text="газодымозащитников и" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBox x:Name="TbTechnicCount"  Width="40" HorizontalAlignment="Left" PreviewTextInput="TbFloor_PreviewTextInput"/>
+                <TextBlock Text="единиц техники." Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            </WrapPanel>
+        </StackPanel>
+        <StackPanel x:Name="SPanelPeopleCount" Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <TextBlock Text="Количество" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox x:Name="TbPeopleCountTrans"  Width="50" HorizontalAlignment="Left" PreviewTextInput="TbFloor_PreviewTextInput"/>
+        </StackPanel>
+        <StackPanel x:Name="SPanelDataPeople" Orientation="Vertical" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Фамилия" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbLastName"  Width="230" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Имя" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbFirstName"  Width="230" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Отчество" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbMiddleName"  Width="230" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Год рождения" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbYearOfBirth"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Пол" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <ComboBox x:Name="ComboGender" Width="150">
+                    <ComboBoxItem Content="мужской"/>
+                    <ComboBoxItem Content="женский"/>
+                </ComboBox>
+            </StackPanel>
+            <CheckBox x:Name="CBoxBurn" Content="Тело имеет признаки воздействия открытого огня"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Площадь ожогов" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbAreaBurn"  Width="230" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Дополнительная информация" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbAddInfo"  Width="230" Height="80" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" 
+                         VerticalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="SPanelDataPeopleDead" Orientation="Vertical" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Фамилия" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbLastNameDead"  Width="230" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Имя" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbFirstNameDead"  Width="230" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Отчество" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbMiddleNameDead"  Width="230" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Год рождения" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbYearOfBirthDead"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Пол" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <ComboBox x:Name="ComboGenderDead" Width="150">
+                    <ComboBoxItem Content="мужской"/>
+                    <ComboBoxItem Content="женский"/>
+                </ComboBox>
+            </StackPanel>
+            <CheckBox x:Name="CBoxBurnDead" Content="Тело имеет признаки воздействия открытого огня"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Обнаружен" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbDiscorver"  Width="230" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Место обнаружения" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbDiscorverPlace"  Width="230" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="SPanelRescuedPeople" Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <TextBlock Text="Дополнительная инф-ция" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+            <TextBox x:Name="TbAddInfoRescuedPeople"  Width="230" HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="100" TextWrapping="Wrap"/>
+        </StackPanel>
+        <StackPanel x:Name="SPanelCharactBuild" Orientation="Vertical" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Объект пожара" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbFireObject"  Width="300" HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="120" TextWrapping="Wrap"/>
+                <Button x:Name="BtnAddInfo" Click="BtnAddInfo_Click" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="5" Margin="5" Content="{materialDesign:PackIcon Kind=DotsVertical}"
+                Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Этажность здания" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbFloorObject"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+                <TextBlock Text="Степень огнестойкости" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <ComboBox x:Name="ComboRefactorines" Width="70" Padding="2,2,5,2">
+                    <ComboBoxItem Content="1"/>
+                    <ComboBoxItem Content="2"/>
+                    <ComboBoxItem Content="3"/>
+                    <ComboBoxItem Content="4"/>
+                    <ComboBoxItem Content="5"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Наружные стены" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <ComboBox x:Name="ComboOuterWalls" Width="330" Padding="2,2,5,2">
+                    <ComboBoxItem Content="кирпичные"/>
+                    <ComboBoxItem Content="деревянные"/>
+                    <ComboBoxItem Content="шлакоблочные"/>
+                    <ComboBoxItem Content="деревянные с утеплителем в виде опилок"/>
+                    <ComboBoxItem Content="бетонные"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Обшивка здания" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <ComboBox x:Name="ComboBuildSheathings" Width="330" Padding="2,2,5,2">
+                    <ComboBoxItem Content="фанера (OSB) плита"/>
+                    <ComboBoxItem Content="сайдинг (панели) ПВХ"/>
+                    <ComboBoxItem Content="сайдинг (панели) металлический"/>
+                    <ComboBoxItem Content="фиброцементные (арболитовые) плиты"/>
+                    <ComboBoxItem Content="утеплитель под штукатуркой"/>
+                    <ComboBoxItem Content="деревянными материалами (блок-хаус, вагонка)"/>
+                    <ComboBoxItem Content="профлист металлический"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Перекрытие" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <ComboBox x:Name="ComboOverlaps" Width="330" Padding="2,2,5,2">
+                    <ComboBoxItem Content="железобетонное"/>
+                    <ComboBoxItem Content="досчатое"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Кровля" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <ComboBox x:Name="ComboRoofs" Width="330" Padding="2,2,5,2">
+                    <ComboBoxItem Content="металлическая односкатная"/>
+                    <ComboBoxItem Content="металлическая двухскатная"/>
+                    <ComboBoxItem Content="металлическая сложной формы"/>
+                    <ComboBoxItem Content="мягкая рубероидная"/>
+                    <ComboBoxItem Content="шиферная"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Обрешетка кровли (основание)" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <ComboBox x:Name="ComboBaseRoofs" Width="230" Padding="2,2,5,2">
+                    <ComboBoxItem Content="бетонная (плиты)"/>
+                    <ComboBoxItem Content="деревянная"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Наличие подвала" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <ComboBox x:Name="ComboIsCellar" Width="160" Padding="2,2,5,2">
+                    <ComboBoxItem Content="имеется"/>
+                    <ComboBoxItem Content="не имеется"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Наличие чердачного помещения" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <ComboBox x:Name="ComboIsAttic" Width="160" Padding="2,2,5,2">
+                    <ComboBoxItem Content="имеется"/>
+                    <ComboBoxItem Content="не имеется"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Геометрические размеры в плане" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbSize1"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Text="X" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <TextBox x:Name="TbSize2"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Здание газифицировано" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <ComboBox x:Name="ComboBuildGas" Width="70" Padding="2,2,5,2">
+                    <ComboBoxItem Content="да"/>
+                    <ComboBoxItem Content="нет"/>
+                </ComboBox>
+                <TextBlock Text="Здание электрифицировано" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <ComboBox x:Name="ComboBuildElect" Width="70" Padding="2,2,5,2">
+                    <ComboBoxItem Content="да"/>
+                    <ComboBoxItem Content="нет"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+               
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Отопление" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <ComboBox x:Name="ComboBuidHeating" Width="330" Padding="2,2,5,2">
+                    <ComboBoxItem Content="отопление отсутствует"/>
+                    <ComboBoxItem Content="центральное водяное"/>
+                    <ComboBoxItem Content="электрическое (воздушные завесы)"/>
+                    <ComboBoxItem Content="электрическое водяное"/>
+                    <ComboBoxItem Content="газовое от АОГВ (газовый котел)"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Дополнительная инф-ция" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbAddInfoBuild"  Width="230" HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="60" TextWrapping="Wrap"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="SPanelCharactHome" Orientation="Vertical" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Количество подъездов в доме" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="240"/>
+                <TextBox x:Name="TbEntranceCount"  Width="70" HorizontalAlignment="Left" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Количество квартир в подъезде" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="240"/>
+                <TextBox x:Name="TbFlatEntranceCount"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Количество квартир в доме" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="240"/>
+                <TextBox x:Name="TbFlatHouseCount"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Номер квартиры" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="240"/>
+                <TextBox x:Name="TbFlatNumber"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Этаж расположения квартиры" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="240"/>
+                <TextBox x:Name="TbFloorFlat"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Количество комнат" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="240"/>
+                <ComboBox x:Name="ComboFlatCount" Width="200" Padding="2,2,5,2">
+                    <ComboBoxItem Content="1"/>
+                    <ComboBoxItem Content="2"/>
+                    <ComboBoxItem Content="3"/>
+                    <ComboBoxItem Content="4"/>
+                    <ComboBoxItem Content="одна коммунальная"/>
+                    <ComboBoxItem Content="блок из двух комнат"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Площадь квартиры" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="240"/>
+                <TextBox x:Name="TbFlatArea"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Площадь комнаты, где произошел пожар" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="240"/>
+                <TextBox x:Name="TbRoomFireArea"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Место пожара" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="240"/>
+                <ComboBox x:Name="ComboFirePlace" Width="200" Padding="2,2,5,2">
+                    <ComboBoxItem Content="зал"/>
+                    <ComboBoxItem Content="коридор"/>
+                    <ComboBoxItem Content="кухня"/>
+                    <ComboBoxItem Content="сан. узел"/>
+                    <ComboBoxItem Content="спальня"/>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="SPanelAftermathFire" Orientation="Vertical" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <materialDesign:ColorZone BorderBrush="Black" BorderThickness="1">
+                <StackPanel>
+                    <TextBlock Text="Сведения о собственнике"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Фамилия" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                        <TextBox x:Name="TbLastNameOwner" Margin="3" Width="270" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Имя" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                        <TextBox x:Name="TbFirstNameOwner" Margin="3"  Width="270" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Отчество" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                        <TextBox x:Name="TbMiddleNameOwner" Margin="3"  Width="270" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone BorderBrush="Black" BorderThickness="1" Margin="0,7,0,0">
+                <StackPanel>
+                    <TextBlock Text="Сведения об арендаторе"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Фамилия" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                        <TextBox x:Name="TbLastNameTenant" Margin="3"  Width="270" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Имя" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                        <TextBox x:Name="TbFirstNameTenant" Margin="3"  Width="270" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Отчество" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                        <TextBox x:Name="TbMiddleNameTenant" Margin="3"  Width="270" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone BorderBrush="Black" BorderThickness="1" Margin="0,7,0,0">
+                <StackPanel>
+                    <TextBlock Text="Организация"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Наименование организации" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                        <TextBox x:Name="TbOrgName"  Width="270" Margin="3" HorizontalAlignment="Left" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Вид деятельности" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                        <TextBox x:Name="TbActivityType"  Width="270" Margin="3" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone BorderBrush="Black" BorderThickness="1" Margin="0,7">
+                <StackPanel>
+                    <TextBlock Text="Страховка"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Наличие страховки" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBox x:Name="ComboInsurance" Width="150" Margin="3" Padding="2,2,5,2" SelectionChanged="ComboInsurance_SelectionChanged">
+                            <ComboBoxItem Content="имеется"/>
+                            <ComboBoxItem Content="не имеется"/>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Сумма" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                        <TextBox x:Name="TbSummInsurance" Margin="3" IsEnabled="False" Width="150" HorizontalAlignment="Left" PreviewTextInput="TbFloor_PreviewTextInput"/>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:ColorZone>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Предварительный ущерб" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                <TextBox x:Name="TbSummDamage" Width="150" Margin="3"  HorizontalAlignment="Left" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Сумма спасенного имущества" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                <TextBox x:Name="TbSummSalvage" Width="150" Margin="3" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Предварительная причина пожара" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                <TextBox x:Name="TbCauseFire"  Width="260" Margin="3" HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="80" TextWrapping="Wrap"/>
+                <Button x:Name="BtnAddInfoCause" Click="BtnAddInfoCause_Click" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="5" Margin="5" Content="{materialDesign:PackIcon Kind=DotsVertical}"
+                Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Что пострадало" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                <TextBox x:Name="TbDamageObject"  Margin="3" Width="270" HorizontalAlignment="Left"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="SPanelEvac" Orientation="Vertical" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Всего" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbGeneralEvac"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="В том числе детей" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                <TextBox x:Name="TbGeneralEvacChild"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="SPanelRescued" Orientation="Vertical" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Через входную дверь" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                <TextBox x:Name="TbRescuedDoor"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Через окно" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                <TextBox x:Name="TbRescuedWindow"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="По лестничной клетке" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                <TextBox x:Name="TbRescuedLadder"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="С применением приспособленной лестницы (инструменты)" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                <TextBox x:Name="TbRescuedTool"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="SPanelRescuedWorker" Orientation="Vertical" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <materialDesign:ColorZone BorderBrush="Black" BorderThickness="1">
+                <StackPanel>
+                    <TextBlock Text="По лестничной клетке с применением &lt;&lt;капюшона&gt;&gt;"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Всего" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                        <TextBox x:Name="TbGeneralRescLadder"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="В том числе детей" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                        <TextBox x:Name="TbResLadderChild"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone BorderBrush="Black" BorderThickness="1" Margin="0,7,0,0">
+                <StackPanel>
+                    <TextBlock Text="По АЛ (АКП)"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Всего" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                        <TextBox x:Name="TbGeneralRescAL"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="В том числе детей" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                        <TextBox x:Name="TbResALChild"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone BorderBrush="Black" BorderThickness="1" Margin="0,7,0,0">
+                <StackPanel>
+                    <TextBlock Text="С применением ППСУ-20"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Всего" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                        <TextBox x:Name="TbGeneralRescPPSY"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="В том числе детей" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                        <TextBox x:Name="TbResPPSYChild"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone BorderBrush="Black" BorderThickness="1" Margin="0,7,0,0">
+                <StackPanel>
+                    <TextBlock Text="С применением натяжного полотна"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Всего" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                        <TextBox x:Name="TbGeneralRescCanvas"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="В том числе детей" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                        <TextBox x:Name="TbResCanvasChild"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone BorderBrush="Black" BorderThickness="1" Margin="0,7,0,0">
+                <StackPanel>
+                    <TextBlock Text="Через окно"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Всего" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                        <TextBox x:Name="TbGeneralRescWindow"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="В том числе детей" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                        <TextBox x:Name="TbResWindowChild"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone BorderBrush="Black" BorderThickness="1" Margin="0,7,0,0">
+                <StackPanel>
+                    <TextBlock Text="Иное"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Всего" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                        <TextBox x:Name="TbGeneralRescOther"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="В том числе детей" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"/>
+                        <TextBox x:Name="TbResOtherChild"  Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewTextInput="TbFloor_PreviewTextInput"/>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:ColorZone>
+        </StackPanel>
+        <ScrollViewer x:Name="SViewerAlignmentForce" Grid.Column="1" Visibility="Collapsed">
+            <StackPanel x:Name="SPanelAlignmentForce" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Visible">
+                <ListView x:Name="ListViewCombatDepForces" BorderThickness="0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Content="{Binding CombatDepForceName}" IsChecked="{Binding IsCombatDepForceChecked}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Margin" Value="1"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+                <ListView x:Name="ListViewAlignmentForces" BorderThickness="0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Content="{Binding AlignmentFoceName}" IsChecked="{Binding IsAlignmentFoceChecked}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Margin" Value="1"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </StackPanel>
+        </ScrollViewer>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10" Grid.ColumnSpan="2" Grid.Row="1" >
+            <Button x:Name="BtnSave" IsEnabled="False" Content="{materialDesign:PackIcon Kind=Check}" Style="{StaticResource MaterialDesignFlatLightBgButton}" Click="BtnSave_Click"/>
+            <Button x:Name="BtnCancel" Content="{materialDesign:PackIcon Kind=Cancel}" Style="{StaticResource MaterialDesignFlatLightBgButton}" Margin="20,0" Click="BtnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

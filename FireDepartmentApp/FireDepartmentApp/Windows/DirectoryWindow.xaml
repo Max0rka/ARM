@@ -1,0 +1,35 @@
+﻿<Window x:Class="FireDepartmentApp.Windows.DirectoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:FireDepartmentApp.Windows"
+        mc:Ignorable="d"
+        Title="Справочники" Height="600" Width="400" MinHeight="600" MinWidth="00" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="10">
+            <Button x:Name="BtnSettlement" Content="Населенные пункты" Click="BtnSettlement_Click" Margin="3" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+            <Button x:Name="BtnStreet" Content="Улицы" Click="BtnStreet_Click" Margin="3" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+            <Button x:Name="BtnDivision" Content="Пожарные части" Click="BtnDivision_Click" Margin="3" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+            <Button x:Name="BtnTechnic" Content="Техника" Click="BtnTechnic_Click" Margin="3" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+            <Button x:Name="BtnBurn" Content="Что горит" Click="BtnBurn_Click" Margin="3" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+            <Button x:Name="BtnMissionType" Content="Боевая задача" Click="BtnMissionType_Click" Margin="3" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+            <Button x:Name="BtnWorkArea" Content="Участок работы" Click="BtnWorkArea_Click" Margin="3" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+            <Button x:Name="BtnBarrelType" Content="Тип стволов" Click="BtnSteamType_Click" Margin="3" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+            <Button x:Name="BtnCombatArea" Content="Боевой участок" Click="BtnCombatArea_Click" Margin="3" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+            <Button x:Name="BtnCombatDepForce" Content="Боевое развертывание сил и средств" Click="BtnCombatDepForce_Click" Margin="3" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+            <Button x:Name="BtnAlignmentForce" Content="Расстановка сил и средств" Click="BtnAlignmentForce_Click" Margin="3" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+            <Button x:Name="BtnServiceType" Content="Силы и средства местного звена ТП РСЧС" Click="BtnServiceType_Click" Margin="3" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+            <Button x:Name="BtnPostionType" Content="Позывные должностных лиц" Click="BtnPostionType_Click" Margin="3" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+        </StackPanel>
+        <Button Grid.Row="1" x:Name="BtnClose" Content="Закрыть" Click="BtnClose_Click" Margin="8" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+    </Grid>
+</Window>

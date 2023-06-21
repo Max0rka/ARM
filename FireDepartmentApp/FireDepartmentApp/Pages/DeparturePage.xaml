@@ -1,0 +1,56 @@
+﻿<Page x:Class="FireDepartmentApp.Pages.DeparturePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+      xmlns:local="clr-namespace:FireDepartmentApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Список выездов" Background="White" IsVisibleChanged="Page_IsVisibleChanged">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Список выездов" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20"/>
+        <WrapPanel Grid.Row="1">
+            <ComboBox Width="250" Name="ComboSettlements" materialDesign:HintAssist.Hint="Населенный пункт" DisplayMemberPath="SettlementName" SelectionChanged="ComboSettlements_SelectionChanged"
+                      Style="{StaticResource MaterialDesignOutlinedComboBox}" Margin="5" Padding="5"/>
+            <ComboBox x:Name="ComboSort" Width="250"  materialDesign:HintAssist.Hint="Сортировка" Style="{StaticResource MaterialDesignOutlinedComboBox}" Margin="5" Padding="5"
+                      SelectionChanged="ComboSort_SelectionChanged">
+                <ComboBoxItem>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Дата выезда"/>
+                        <materialDesign:PackIcon Kind="ArrowUp" Margin="5,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Дата выезда"/>
+                        <materialDesign:PackIcon Kind="ArrowDown" Margin="5,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </ComboBoxItem>
+            </ComboBox>
+            <TextBlock Text="с" VerticalAlignment="Center"/>
+            <DatePicker x:Name="DatePickerStart" Width="150" Style="{StaticResource MaterialDesignOutlinedDatePicker}" Padding="5" Margin="5" SelectedDateChanged="DatePickerStart_SelectedDateChanged"/>
+            <TextBlock Text="по" VerticalAlignment="Center"/>
+            <DatePicker x:Name="DatePickerEnd" Width="150" Style="{StaticResource MaterialDesignOutlinedDatePicker}" Padding="5" Margin="5" SelectedDateChanged="DatePickerEnd_SelectedDateChanged"/>
+        </WrapPanel>
+        <ListView Grid.Row="2" x:Name="ListViewDepartures" MouseDoubleClick="ListViewDepartures_MouseDoubleClick" ItemContainerStyle="{StaticResource ListViewItemDepart}" HorizontalContentAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <StackPanel Margin="5">
+                            <TextBlock Text="{Binding DateTimeDepart,StringFormat={}Дата и время получения информации: {0:dd.MM.yyyy HH.mm}}" HorizontalAlignment="Left"/>
+                            <TextBlock Text="{Binding AddressName, StringFormat={}Адрес: {0}}" HorizontalAlignment="Left"/>
+                            <TextBlock Text="{Binding ListBurnTypes, StringFormat={}Объекты горения: {0}}" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <Button x:Name="BtnDell" Content="{materialDesign:PackIcon Kind=Delete}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20,0" ToolTip="Удалить" Click="BtnDell_Click"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

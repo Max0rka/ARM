@@ -1,0 +1,1313 @@
+﻿<Page x:Class="FireDepartmentApp.Pages.AddDeparturePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:FireDepartmentApp.Pages" xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
+      mc:Ignorable="d" 
+      d:DesignHeight="1700" d:DesignWidth="1200" IsVisibleChanged="Page_IsVisibleChanged"
+      Title="" Background="White">
+
+    <Page.Resources>
+       
+    </Page.Resources>
+    <ScrollViewer >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <materialDesign:ColorZone Background="MediumPurple" Padding="1">
+                    <TextBlock Text="Раздел 1. Общая информация" HorizontalAlignment="Center" Foreground="White" FontSize="15"/>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone Background="WhiteSmoke" Padding="1">
+                    <TextBlock Text="Первичная информация" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Black" FontSize="15"/>
+                </materialDesign:ColorZone>
+                <WrapPanel HorizontalAlignment="Center">
+                    <materialDesign:ColorZone x:Name="ColorZoneDateTime" Style="{StaticResource ColorZone}" IsEnabled="False">
+                        <StackPanel>
+                            <TextBlock Text="Дата и время получения извещения(информации)"/>
+                            <DatePicker x:Name="DateDepart" Width="140" FontSize="14" Margin="5" materialDesign:DatePickerAssist.OutlinedBorderActiveThickness="2" Padding="5"
+                                        materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2" Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
+                                            SelectedDate="{Binding DateTimeDepart, Mode=TwoWay}" MaxHeight="36"/>
+                            <materialDesign:TimePicker x:Name="TimeDepart" Width="140" FontSize="14" materialDesign:TimePickerAssist.OutlinedBorderActiveThickness="2" 
+                                                       materialDesign:TimePickerAssist.OutlinedBorderInactiveThickness="2" Is24Hours="True" Padding="5" MaxHeight="36"
+                                                       Style="{StaticResource MaterialDesignOutlinedTimePicker}" SelectedTime="{Binding DateTimeDepart,Mode=TwoWay}"/>
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                    <materialDesign:ColorZone Style="{StaticResource ColorZone}">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Населенный пункт"/>
+                            <ComboBox x:Name="ComboBoxSettlement" Margin="5" Padding="5" Style="{StaticResource MaterialDesignOutlinedComboBox}" MaxHeight="36"
+                                          DisplayMemberPath="SettlementName" SelectedItem="{Binding Settlement}" SelectionChanged="ComboBoxSettlement_SelectionChanged"/>
+                            <ComboBox x:Name="ComboBoxDepArea" Margin="5" Padding="5" Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                          DisplayMemberPath="DepartureAreaName" IsEnabled="False" SelectedItem="{Binding DepartureArea}" MaxHeight="36" SelectionChanged="ComboBoxDepArea_SelectionChanged"/>
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                    <materialDesign:ColorZone Style="{StaticResource ColorZone}">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Улица"/>
+                            <ComboBox x:Name="ComboBoxStreet" Margin="5" Padding="5" Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                          DisplayMemberPath="StreetName" SelectedItem="{Binding Street}" MaxHeight="36"/>
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                    <materialDesign:ColorZone Style="{StaticResource ColorZone}">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Дом"/>
+                            <TextBox FontSize="14" Padding="5" Margin="5" Style="{StaticResource MaterialDesignOutlinedTextBox}" Text="{Binding NumHouse}" />
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                    <materialDesign:ColorZone Style="{StaticResource ColorZone}">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Корпус"/>
+                            <TextBox FontSize="14" Padding="5" Margin="5" Style="{StaticResource MaterialDesignOutlinedTextBox}"  Text="{Binding NumCorp}"/>
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                    <materialDesign:ColorZone Style="{StaticResource ColorZone}">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Квартира"/>
+                            <TextBox FontSize="14" Padding="5" Margin="5" Style="{StaticResource MaterialDesignOutlinedTextBox}" Text="{Binding NumAppart}"/>
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                    <materialDesign:ColorZone Style="{StaticResource ColorZone}">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Ориентиры"/>
+                            <TextBox FontSize="14" Padding="5" Margin="5" Height="100" Style="{StaticResource MaterialDesignOutlinedTextBox}"  
+                                     TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Text="{Binding Landmark}"/>
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                    <materialDesign:ColorZone Style="{StaticResource ColorZone}">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Номер телефона заявителя"/>
+                            <TextBox FontSize="14" Padding="5" Margin="5" Style="{StaticResource MaterialDesignOutlinedTextBox}" Text="{Binding ApplicantPhone}"/>
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                    <materialDesign:ColorZone Style="{StaticResource ColorZone}">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Что горит"/>
+                            <xceed:CheckComboBox Grid.Row="1" x:Name="ComboBoxBurns" Margin="5" BorderThickness="2" Delimiter="," DisplayMemberPath="BurnTypeName"
+                                 MaxWidth="300" Width="180" MaxHeight="36" Height="36" FontSize="14" Padding="5" ToolTip="{Binding ElementName=ComboBoxBurns, Path=Text}"
+                                 SelectedMemberPath="BurnSelected">
+
+                            </xceed:CheckComboBox>
+                            <!--<ComboBox x:Name="ComboBoxBurns" Margin="5" Padding="5" Style="{StaticResource MaterialDesignOutlinedComboBox}" MaxHeight="36"/>-->
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                    <materialDesign:ColorZone Style="{StaticResource ColorZone}">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Доп. информация"/>
+                            <TextBox FontSize="14" Padding="5" Margin="5" Height="100" Style="{StaticResource MaterialDesignOutlinedTextBox}" Text="{Binding AdditionalInfo}"
+                                     TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                </WrapPanel>
+                <materialDesign:ColorZone Background="WhiteSmoke" Padding="1">
+                    <Expander Padding="0" IsExpanded="True">
+                        <Expander.Header>
+                            <TextBlock Text="Уточненная информация" Margin="0" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Black" FontSize="15"/>
+                        </Expander.Header>
+                        <StackPanel>
+                            <WrapPanel HorizontalAlignment="Center">
+                                <WrapPanel.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontFamily" Value="Comic Sans MS"/>
+                                        <Setter Property="FontSize" Value="12"/>
+                                        <Setter Property="Margin" Value="3"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="TextWrapping" Value="Wrap"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    </Style>
+                                </WrapPanel.Resources>
+                                <materialDesign:ColorZone Style="{StaticResource ColorZoneAdditional}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel >
+                                            <TextBlock Text="Что вы видите по внешним признакам?" Margin="10"/>
+                                            <RadioButton x:Name="RButtonSign1" Margin="10,1" GroupName="Signs" Style="{StaticResource MaterialDesignRadioButton}" Checked="RButtonSign_Checked">
+                                                <TextBlock Text="Слабое выделение дыма"/>
+                                            </RadioButton>
+                                            <RadioButton  x:Name="RButtonSign2" Margin="10,1" GroupName="Signs" Style="{StaticResource MaterialDesignRadioButton}" Checked="RButtonSign_Checked">
+                                                <TextBlock Text="Сильное выделение дыма"/>
+                                            </RadioButton>
+                                            <RadioButton x:Name="RButtonSign3" Margin="10,1" GroupName="Signs" Style="{StaticResource MaterialDesignRadioButton}" Checked="RButtonSign_Checked">
+                                                <TextBlock Text="Вырывающиеся языки пламени"/>
+                                            </RadioButton>
+
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1">
+                                            <TextBlock Text="Доп. информация"/>
+                                            <TextBox x:Name="TbAdditionalInfoSign" Text="{Binding ExternalSignAddInfo}" FontSize="14" Padding="5" Margin="5" Height="70" Style="{StaticResource MaterialDesignOutlinedTextBox}"  
+                                     TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </materialDesign:ColorZone>
+                                <materialDesign:ColorZone Style="{StaticResource ColorZoneAdditional}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel >
+                                            <TextBlock Text="Угроза людям, просят ли о помощи?" Margin="10"/>
+                                            <CheckBox x:Name="ThreatPeople" Style="{StaticResource MaterialDesignCheckBox}" Margin="10,1" Checked="ThreatPeople_Checked" Unchecked="ThreatPeople_Unchecked">
+                                                <TextBlock Text="Имеется угроза людям"/>
+                                            </CheckBox>
+                                            <TextBox FontSize="14" Padding="5" Margin="5" Text="{Binding ThreatPeopleCount}">
+                                                <TextBox.Style>
+                                                    <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                                                        <Setter Property="IsEnabled" Value="False"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding ElementName=ThreatPeople, Path=IsChecked}" Value="True">
+                                                                <Setter Property="IsEnabled" Value="True"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBox.Style>
+                                            </TextBox>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1">
+                                            <TextBlock Text="Доп. информация"/>
+                                            <TextBox x:Name="TbAdditionalInfoThreatPeople" Text="{Binding ThreatPeopleAddInfo}" FontSize="14" Padding="5" Margin="5" Height="70" Style="{StaticResource MaterialDesignOutlinedTextBox}"  
+                                     TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </materialDesign:ColorZone>
+                                <materialDesign:ColorZone Style="{StaticResource ColorZoneAdditional}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel >
+                                            <TextBlock Text="Имеются ли пострадавшие?" Margin="10"/>
+                                            <RadioButton x:Name="YesAffected" Margin="10,1" GroupName="IsAffected" Style="{StaticResource MaterialDesignRadioButton}" Checked="YesAffected_Checked">
+                                                <TextBlock Text="Да, в количестве"/>
+                                            </RadioButton>
+                                            <TextBox FontSize="14" Padding="5" Margin="5" Text="{Binding AffectedCount}">
+                                                <TextBox.Style>
+                                                    <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                                                        <Setter Property="IsEnabled" Value="False"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding ElementName=YesAffected, Path=IsChecked}" Value="True">
+                                                                <Setter Property="IsEnabled" Value="True"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBox.Style>
+                                            </TextBox>
+                                            <RadioButton x:Name="NoAffected" Margin="10,1" GroupName="IsAffected"  Style="{StaticResource MaterialDesignRadioButton}" Checked="YesAffected_Checked">
+                                                <TextBlock Text="Пострадавших нет"/>
+                                            </RadioButton>
+                                            <RadioButton x:Name="UnknownAffected" Margin="10,1" GroupName="IsAffected" Style="{StaticResource MaterialDesignRadioButton}" Checked="YesAffected_Checked">
+                                                <TextBlock Text="Не знаю"/>
+                                            </RadioButton>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1">
+                                            <TextBlock Text="Доп. информация"/>
+                                            <TextBox x:Name="TbAdditionalInfoAffect" Text="{Binding AffectedAddInfo}" FontSize="14" Padding="5" Margin="5" Height="70" Style="{StaticResource MaterialDesignOutlinedTextBox}"  
+                                     TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </materialDesign:ColorZone>
+                                <materialDesign:ColorZone>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel >
+                                            <TextBlock Text="Что с ними?" Margin="10"/>
+                                            <CheckBox x:Name="StatePeople1" Style="{StaticResource MaterialDesignCheckBox}" Margin="10,1" Checked="StatePeople_Checked" Unchecked="StatePeople_Unchecked">
+                                                <TextBlock Text="Без сознания"/>
+                                            </CheckBox>
+                                            <CheckBox x:Name="StatePeople2" Style="{StaticResource MaterialDesignCheckBox}" Margin="10,1"  Checked="StatePeople_Checked" Unchecked="StatePeople_Unchecked">
+                                                <TextBlock Text="Получили ожоги"/>
+                                            </CheckBox>
+                                            <CheckBox x:Name="StatePeople3" Style="{StaticResource MaterialDesignCheckBox}" Margin="10,1" Checked="StatePeople_Checked" Unchecked="StatePeople_Unchecked">
+                                                <TextBlock Text="Не знаю"/>
+                                            </CheckBox>
+
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1">
+                                            <TextBlock Text="Доп. информация"/>
+                                            <TextBox x:Name="AdditionalInfoStatePeople" Text="{Binding StatePeopleAddInfo}" FontSize="14" Padding="5" Margin="5" Height="70" Style="{StaticResource MaterialDesignOutlinedTextBox}"  
+                                     TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <materialDesign:ColorZone.Resources>
+                                        <Style TargetType="materialDesign:ColorZone" BasedOn="{StaticResource ColorZoneAdditional}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=YesAffected, Path=IsChecked}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </materialDesign:ColorZone.Resources>
+                                </materialDesign:ColorZone>
+                                <materialDesign:ColorZone>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel >
+                                            <TextBlock Text="Где находятся?" Margin="10"/>
+                                            <CheckBox x:Name="CheckBoxLocation1" Style="{StaticResource MaterialDesignCheckBox}" Margin="10,1" Checked="CheckBoxLocation_Checked" Unchecked="CheckBoxLocation_Unchecked">
+                                                <TextBlock Text="Самостоятельно эвакуируются"/>
+                                            </CheckBox>
+                                            <CheckBox x:Name="CheckBoxLocation2" Style="{StaticResource MaterialDesignCheckBox}" Margin="10,1" Checked="CheckBoxLocation_Checked" Unchecked="CheckBoxLocation_Unchecked">
+                                                <TextBlock Text="В зоне воздействия"/>
+                                            </CheckBox>
+
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1">
+                                            <TextBlock Text="Доп. информация"/>
+                                            <TextBox x:Name="TbAdditionalInfoLocation" Text="{Binding PeopleLocationAddInfo}" FontSize="14" Padding="5" Margin="5" Height="70" Style="{StaticResource MaterialDesignOutlinedTextBox}"  
+                                     TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <materialDesign:ColorZone.Resources>
+                                        <Style TargetType="materialDesign:ColorZone" BasedOn="{StaticResource ColorZoneAdditional}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=YesAffected, Path=IsChecked}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </materialDesign:ColorZone.Resources>
+                                </materialDesign:ColorZone>
+
+                                <materialDesign:ColorZone Style="{StaticResource ColorZoneAdditional}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel >
+                                            <TextBlock Text="Имеется ли угроза распространения?" Margin="10"/>
+                                            <RadioButton Name="ThreatFire1" Margin="10,1" GroupName="Threat"  Style="{StaticResource MaterialDesignRadioButton}" Checked="ThreatFire_Checked">
+                                                <TextBlock Text="Имеется"/>
+                                            </RadioButton>
+                                            <RadioButton Name="ThreatFire2" Margin="10,1" GroupName="Threat" Style="{StaticResource MaterialDesignRadioButton}" Checked="ThreatFire_Checked">
+                                                <TextBlock Text="Имеется на этажи"/>
+                                            </RadioButton>
+                                            <RadioButton Name="ThreatFire3" Margin="10,1" GroupName="Threat" Style="{StaticResource MaterialDesignRadioButton}" Checked="ThreatFire_Checked">
+                                                <TextBlock Text="Имеется на соседние объекты"/>
+                                            </RadioButton>
+                                            <RadioButton Name="ThreatFire4" Margin="10,1" GroupName="Threat" Style="{StaticResource MaterialDesignRadioButton}" Checked="ThreatFire_Checked">
+                                                <TextBlock Text="Не знаю"/>
+                                            </RadioButton>
+
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1">
+                                            <TextBlock Text="Доп. информация"/>
+                                            <TextBox x:Name="TbAdditionalInfoThreat" Text="{Binding ThreatFireAddInfo}" FontSize="14" Padding="5" Margin="5" Height="70" Style="{StaticResource MaterialDesignOutlinedTextBox}"  
+                                     TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </materialDesign:ColorZone>
+                                <materialDesign:ColorZone Style="{StaticResource ColorZoneAdditional}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel >
+                                            <TextBlock Text="Какие значимые объекты имеются рядом?" Margin="10"/>
+                                            <CheckBox x:Name="CheckBoxObject1" Style="{StaticResource MaterialDesignCheckBox}" Margin="10,1" Checked="CheckBoxObject_Checked" Unchecked="CheckBoxObject_Unchecked">
+                                                <TextBlock Text="Социально - значимые"/>
+                                            </CheckBox>
+                                            <CheckBox x:Name="CheckBoxObject2" Style="{StaticResource MaterialDesignCheckBox}" Margin="10,1" Checked="CheckBoxObject_Checked" Unchecked="CheckBoxObject_Unchecked">
+                                                <TextBlock Text="С массовым пребыванием"/>
+                                            </CheckBox>
+                                            <CheckBox x:Name="CheckBoxObject3" Style="{StaticResource MaterialDesignCheckBox}" Margin="10,1" Checked="CheckBoxObject_Checked" Unchecked="CheckBoxObject_Unchecked">
+                                                <TextBlock Text="Производственные"/>
+                                            </CheckBox>
+                                            <CheckBox x:Name="CheckBoxObject4" Style="{StaticResource MaterialDesignCheckBox}" Margin="10,1" Checked="CheckBoxObject_Checked" Unchecked="CheckBoxObject_Unchecked">
+                                                <TextBlock Text="Социально - значимых объектов рядом нет"/>
+                                            </CheckBox>
+                                            <CheckBox x:Name="CheckBoxObject5" Style="{StaticResource MaterialDesignCheckBox}" Margin="10,1" Checked="CheckBoxObject_Checked" Unchecked="CheckBoxObject_Unchecked">
+                                                <TextBlock Text="Рядом объектов нет"/>
+                                            </CheckBox>
+
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1">
+                                            <TextBlock Text="Доп. информация"/>
+                                            <TextBox x:Name="TbAdditionalInfoObject" Text="{Binding NearbyObjectAddInfo}" FontSize="14" Padding="5" Margin="5" Height="70" Style="{StaticResource MaterialDesignOutlinedTextBox}"  
+                                     TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </materialDesign:ColorZone>
+                                <materialDesign:ColorZone Style="{StaticResource ColorZoneAdditional}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel >
+                                            <TextBlock Text="Местонахождение заявителя?" Margin="10"/>
+                                            <RadioButton x:Name="RButtonPlace1" Margin="10,1" GroupName="Place" Style="{StaticResource MaterialDesignRadioButton}" Checked="RButtonPlace_Checked">
+                                                <TextBlock Text="На объекте"/>
+                                            </RadioButton>
+                                            <RadioButton x:Name="RButtonPlace2" Margin="10,1" GroupName="Place" Style="{StaticResource MaterialDesignRadioButton}" Checked="RButtonPlace_Checked">
+                                                <TextBlock Text="Рядом с объектом"/>
+                                            </RadioButton>
+                                            <RadioButton x:Name="RButtonPlace3" Margin="10,1" GroupName="Place" Style="{StaticResource MaterialDesignRadioButton}" Checked="RButtonPlace_Checked">
+                                                <TextBlock Text="Внутри здания"/>
+                                            </RadioButton>
+
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1">
+                                            <TextBlock Text="Доп. информация"/>
+                                            <TextBox x:Name="TbAdditionalInfoPlace" Text="{Binding PlaceAddInfo}" FontSize="14" Padding="5" Margin="5" Height="70" Style="{StaticResource MaterialDesignOutlinedTextBox}"  
+                                     TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </materialDesign:ColorZone>
+                                <materialDesign:ColorZone Style="{StaticResource ColorZoneAdditional}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel >
+                                            <TextBlock Text="Есть ли перекрытые проезды?" Margin="10"/>
+                                            <RadioButton x:Name="RButtonBarrier1" Margin="10,1" GroupName="Barrier" Style="{StaticResource MaterialDesignRadioButton}" Checked="RButtonBarrier_Checked">
+                                                <TextBlock Text="Есть"/>
+                                            </RadioButton>
+                                            <RadioButton x:Name="RButtonBarrier2" Margin="10,1" GroupName="Barrier" Style="{StaticResource MaterialDesignRadioButton}" Checked="RButtonBarrier_Checked">
+                                                <TextBlock Text="Припаркованные ТС"/>
+                                            </RadioButton>
+                                            <RadioButton x:Name="RButtonBarrier3" Margin="10,1" GroupName="Barrier" Style="{StaticResource MaterialDesignRadioButton}" Checked="RButtonBarrier_Checked">
+                                                <TextBlock Text="Котлованы"/>
+                                            </RadioButton>
+                                            <RadioButton x:Name="RButtonBarrier4" Margin="10,1" GroupName="Barrier" Style="{StaticResource MaterialDesignRadioButton}" Checked="RButtonBarrier_Checked">
+                                                <TextBlock Text="Шлагбаум"/>
+                                            </RadioButton>
+                                            <RadioButton x:Name="RButtonBarrier5" Margin="10,1" GroupName="Barrier" Style="{StaticResource MaterialDesignRadioButton}" Checked="RButtonBarrier_Checked">
+                                                <TextBlock Text="Искусственные заграждения"/>
+                                            </RadioButton>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1">
+                                            <TextBlock Text="Доп. информация"/>
+                                            <TextBox x:Name="TbAdditionalInfoBarrier" Text="{Binding BarrierAddInfo}" FontSize="14" Padding="5" Margin="5" Height="70" Style="{StaticResource MaterialDesignOutlinedTextBox}"  
+                                     TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </materialDesign:ColorZone>
+                                <materialDesign:ColorZone Style="{StaticResource ColorZoneAdditional}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel >
+                                            <TextBlock Text="Возможность встречи пожарных подразделений?" Margin="10"/>
+                                            <RadioButton x:Name="RButtonMCS1" Margin="10,1" GroupName="Meet" Style="{StaticResource MaterialDesignRadioButton}" Checked="RButtonMCS_Checked">
+                                                <TextBlock Text="Имеется"/>
+                                            </RadioButton>
+                                            <RadioButton x:Name="RButtonMCS2" Margin="10,1" GroupName="Meet" Style="{StaticResource MaterialDesignRadioButton}" Checked="RButtonMCS_Checked">
+                                                <TextBlock Text="Нет"/>
+                                            </RadioButton>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1">
+                                            <TextBlock Text="Доп. информация"/>
+                                            <TextBox x:Name="TbAdditionalInfoMeet" Text="{Binding MeetMCSAddInfo}" FontSize="14" Padding="5" Margin="5" Height="70" Style="{StaticResource MaterialDesignOutlinedTextBox}"  
+                                     TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </materialDesign:ColorZone>
+                                <materialDesign:ColorZone Style="{StaticResource ColorZoneAdditional}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel >
+                                            <TextBlock Text="Ваше отношение к объекту пожара?" Margin="10"/>
+                                            <RadioButton x:Name="RButtonWhy1" Margin="10,1" GroupName="Why" Style="{StaticResource MaterialDesignRadioButton}" Checked="RButtonWhy_Checked">
+                                                <TextBlock Text="Собственник"/>
+                                            </RadioButton>
+                                            <RadioButton x:Name="RButtonWhy2" Margin="10,1" GroupName="Why" Style="{StaticResource MaterialDesignRadioButton}" Checked="RButtonWhy_Checked">
+                                                <TextBlock Text="Сосед"/>
+                                            </RadioButton>
+                                            <RadioButton x:Name="RButtonWhy3" Margin="10,1" GroupName="Why" Style="{StaticResource MaterialDesignRadioButton}" Checked="RButtonWhy_Checked">
+                                                <TextBlock Text="Арендатор"/>
+                                            </RadioButton>
+                                            <RadioButton x:Name="RButtonWhy4" Margin="10,1" GroupName="Why" Style="{StaticResource MaterialDesignRadioButton}" Checked="RButtonWhy_Checked">
+                                                <TextBlock Text="Очевидец"/>
+                                            </RadioButton>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1">
+                                            <TextBlock Text="Доп. информация"/>
+                                            <TextBox x:Name="TbAdditionalInfoWhy" Text="{Binding WhyApplicantAddInfo}" FontSize="14" Padding="5" Margin="5" Height="70" Style="{StaticResource MaterialDesignOutlinedTextBox}"  
+                                     TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </materialDesign:ColorZone>
+                                <materialDesign:ColorZone Style="{StaticResource ColorZoneAdditional}" >
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <StackPanel Grid.Row="1">
+                                            <TextBlock Text="Ваша фамилия, имя, отчество?" Margin="10"/>
+                                            <TextBox x:Name="TbAdditionalInfoFIO" Text="{Binding FIOApplicant}" FontSize="14" Padding="5" Margin="5" Height="70" Style="{StaticResource MaterialDesignOutlinedTextBox}"  
+                                     TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </materialDesign:ColorZone>
+                            </WrapPanel>
+                            <materialDesign:ColorZone Background="WhiteSmoke" Padding="1">
+                                <TextBlock Text="Спасибо за переданную информацию, ваша информация будет использована в ходе организации и проведения аварийно - спасательных работ" 
+                                               FontWeight="Bold" HorizontalAlignment="Center" Foreground="Black" FontSize="14"/>
+                            </materialDesign:ColorZone>
+                        </StackPanel>
+                    </Expander>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone Background="MediumPurple" Padding="1">
+                    <TextBlock Text="Раздел 2. Учет прибытия сил и средств" HorizontalAlignment="Center" Foreground="White" FontSize="15"/>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone Background="MediumPurple" Padding="1" Margin="0,3,0,0">
+                    <TextBlock Text="Подраздел 2.1. Учет прибытия сил и средств дежурных караулов" HorizontalAlignment="Center" Foreground="White" FontSize="15"/>
+                </materialDesign:ColorZone>
+                <!--1 ранг пожара-->
+                <WrapPanel HorizontalAlignment="Center" Margin="5">
+                    <materialDesign:ColorZone x:Name="ColorZoneRank" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Ранг №1" HorizontalAlignment="Center"/>
+                            <ListView Grid.Row="1" x:Name="ListViewRank" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{StaticResource MaterialDesignListView}"
+                          ItemContainerStyle="{StaticResource ListViewItem}" Margin="10">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel HorizontalAlignment="Center"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding SubdivisionName}" HorizontalAlignment="Center"/>
+                                                <CheckBox x:Name="CheckBoxDepart" Content="Выезд" IsChecked="{Binding DepartureChecked}" Style="{StaticResource MaterialDesignCheckBox}"
+                                                  Checked="CheckBoxDepart_Checked"/>
+                                                <materialDesign:TimePicker SelectedTime="{Binding TimeDeparture,Mode=TwoWay}" Is24Hours="True">
+                                                    <materialDesign:TimePicker.Resources>
+                                                        <Style TargetType="materialDesign:TimePicker">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxDepart, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </materialDesign:TimePicker.Resources>
+                                                </materialDesign:TimePicker>
+                                                <CheckBox x:Name="CheckBoxArrival" Content="Прибыл" IsChecked="{Binding ArrivalChecked}" 
+                                                  Checked="CheckBoxArrival_Checked" Unchecked="CheckBoxArrival_Unchecked">
+                                                    <CheckBox.Resources>
+                                                        <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxDepart, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </CheckBox.Resources>
+                                                </CheckBox>
+                                                <materialDesign:TimePicker SelectedTime="{Binding TimeArrival,Mode=TwoWay}" Is24Hours="True">
+                                                    <materialDesign:TimePicker.Resources>
+                                                        <Style TargetType="materialDesign:TimePicker">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxArrival, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </materialDesign:TimePicker.Resources>
+                                                </materialDesign:TimePicker>
+                                                <TextBox Width="40" Text="{Binding PeopleCount}" x:Name="TbPeopleCount" Padding="5" Margin="5" MaxLength="1" HorizontalAlignment="Left"
+                                    materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" PreviewTextInput="TbPeopleCount_PreviewTextInput" TextChanged="TbPeopleCount_TextChanged">
+                                                    <TextBox.Resources>
+                                                        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxArrival, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBox.Resources>
+                                                </TextBox>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                        
+                    </materialDesign:ColorZone>
+                    <!--1 БИС ранг пожара-->
+                    <materialDesign:ColorZone x:Name="ColorZoneRank1" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1" Margin="5,0,0,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Ранг №1 - БИС" HorizontalAlignment="Center"/>
+                            <ListView Grid.Row="1" x:Name="ListViewRank1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{StaticResource MaterialDesignListView}"
+                          ItemContainerStyle="{StaticResource ListViewItem}" Margin="10">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel HorizontalAlignment="Center"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding SubdivisionName}" HorizontalAlignment="Center"/>
+                                                <CheckBox x:Name="CheckBoxDepart" Content="Выезд" IsChecked="{Binding DepartureChecked}" Style="{StaticResource MaterialDesignCheckBox}"
+                                                  Checked="CheckBoxDepart_Checked"/>
+                                                <materialDesign:TimePicker SelectedTime="{Binding TimeDeparture,Mode=TwoWay}" Is24Hours="True">
+                                                    <materialDesign:TimePicker.Resources>
+                                                        <Style TargetType="materialDesign:TimePicker">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxDepart, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </materialDesign:TimePicker.Resources>
+                                                </materialDesign:TimePicker>
+                                                <CheckBox x:Name="CheckBoxArrival" Content="Прибыл" IsChecked="{Binding ArrivalChecked}" 
+                                                  Checked="CheckBoxArrival_Checked" Unchecked="CheckBoxArrival_Unchecked">
+                                                    <CheckBox.Resources>
+                                                        <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxDepart, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </CheckBox.Resources>
+                                                </CheckBox>
+                                                <materialDesign:TimePicker SelectedTime="{Binding TimeArrival,Mode=TwoWay}" Is24Hours="True">
+                                                    <materialDesign:TimePicker.Resources>
+                                                        <Style TargetType="materialDesign:TimePicker">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxArrival, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </materialDesign:TimePicker.Resources>
+                                                </materialDesign:TimePicker>
+                                                <TextBox Width="40" Text="{Binding PeopleCount}" x:Name="TbPeopleCount" Padding="5" Margin="5" MaxLength="1" HorizontalAlignment="Left"
+                                     materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" PreviewTextInput="TbPeopleCount_PreviewTextInput" TextChanged="TbPeopleCount_TextChanged">
+                                                    <TextBox.Resources>
+                                                        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxArrival, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBox.Resources>
+                                                </TextBox>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+
+                    </materialDesign:ColorZone>
+                    <!--2 ранг пожара-->
+                    <materialDesign:ColorZone x:Name="ColorZoneRank2" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1" Margin="5,0,0,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Ранг №2" HorizontalAlignment="Center"/>
+                            <ListView Grid.Row="1" x:Name="ListViewRank2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{StaticResource MaterialDesignListView}"
+                          ItemContainerStyle="{StaticResource ListViewItem}" Margin="10">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel HorizontalAlignment="Center"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding SubdivisionName}" HorizontalAlignment="Center"/>
+                                                <CheckBox x:Name="CheckBoxDepart" Content="Выезд" IsChecked="{Binding DepartureChecked}" Style="{StaticResource MaterialDesignCheckBox}"
+                                                  Checked="CheckBoxDepart_Checked"/>
+                                                <materialDesign:TimePicker SelectedTime="{Binding TimeDeparture,Mode=TwoWay}" Is24Hours="True">
+                                                    <materialDesign:TimePicker.Resources>
+                                                        <Style TargetType="materialDesign:TimePicker">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxDepart, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </materialDesign:TimePicker.Resources>
+                                                </materialDesign:TimePicker>
+                                                <CheckBox x:Name="CheckBoxArrival" Content="Прибыл" IsChecked="{Binding ArrivalChecked}" 
+                                                  Checked="CheckBoxArrival_Checked" Unchecked="CheckBoxArrival_Unchecked">
+                                                    <CheckBox.Resources>
+                                                        <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxDepart, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </CheckBox.Resources>
+                                                </CheckBox>
+                                                <materialDesign:TimePicker SelectedTime="{Binding TimeArrival,Mode=TwoWay}" Is24Hours="True">
+                                                    <materialDesign:TimePicker.Resources>
+                                                        <Style TargetType="materialDesign:TimePicker">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxArrival, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </materialDesign:TimePicker.Resources>
+                                                </materialDesign:TimePicker>
+                                                <TextBox Width="40" Text="{Binding PeopleCount}" x:Name="TbPeopleCount" Padding="5" Margin="5" MaxLength="1" HorizontalAlignment="Left"
+                                     materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" PreviewTextInput="TbPeopleCount_PreviewTextInput" TextChanged="TbPeopleCount_TextChanged">
+                                                    <TextBox.Resources>
+                                                        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxArrival, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBox.Resources>
+                                                </TextBox>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </materialDesign:ColorZone>
+                    <!--3 ранг пожара-->
+                    <materialDesign:ColorZone x:Name="ColorZoneRank3" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1" Margin="5,0,0,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Ранг №3" HorizontalAlignment="Center"/>
+                            <ListView Grid.Row="1" x:Name="ListViewRank3" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{StaticResource MaterialDesignListView}"
+                          ItemContainerStyle="{StaticResource ListViewItem}" Margin="10">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel HorizontalAlignment="Center"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding SubdivisionName}" HorizontalAlignment="Center"/>
+                                                <CheckBox x:Name="CheckBoxDepart" Content="Выезд" IsChecked="{Binding DepartureChecked}" Style="{StaticResource MaterialDesignCheckBox}"
+                                                  Checked="CheckBoxDepart_Checked"/>
+                                                <materialDesign:TimePicker SelectedTime="{Binding TimeDeparture,Mode=TwoWay}" Is24Hours="True">
+                                                    <materialDesign:TimePicker.Resources>
+                                                        <Style TargetType="materialDesign:TimePicker">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxDepart, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </materialDesign:TimePicker.Resources>
+                                                </materialDesign:TimePicker>
+                                                <CheckBox x:Name="CheckBoxArrival" Content="Прибыл" IsChecked="{Binding ArrivalChecked}" 
+                                                  Checked="CheckBoxArrival_Checked" Unchecked="CheckBoxArrival_Unchecked">
+                                                    <CheckBox.Resources>
+                                                        <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxDepart, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </CheckBox.Resources>
+                                                </CheckBox>
+                                                <materialDesign:TimePicker SelectedTime="{Binding TimeArrival,Mode=TwoWay}" Is24Hours="True">
+                                                    <materialDesign:TimePicker.Resources>
+                                                        <Style TargetType="materialDesign:TimePicker">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxArrival, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </materialDesign:TimePicker.Resources>
+                                                </materialDesign:TimePicker>
+                                                <TextBox Width="40" Text="{Binding PeopleCount}" x:Name="TbPeopleCount" Padding="5" Margin="5" MaxLength="1" HorizontalAlignment="Left"
+                                    materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" PreviewTextInput="TbPeopleCount_PreviewTextInput" TextChanged="TbPeopleCount_TextChanged">
+                                                    <TextBox.Resources>
+                                                        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxArrival, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBox.Resources>
+                                                </TextBox>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </materialDesign:ColorZone>
+                    <!--4 ранг пожара-->
+                    <materialDesign:ColorZone x:Name="ColorZoneRank4" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1" Margin="5,0,0,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Ранг №4" HorizontalAlignment="Center"/>
+                            <ListView Grid.Row="1" x:Name="ListViewRank4" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{StaticResource MaterialDesignListView}"
+                          ItemContainerStyle="{StaticResource ListViewItem}" Margin="10">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel HorizontalAlignment="Center"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding SubdivisionName}" HorizontalAlignment="Center"/>
+                                                <CheckBox x:Name="CheckBoxDepart" Content="Выезд" IsChecked="{Binding DepartureChecked}" Style="{StaticResource MaterialDesignCheckBox}"
+                                                  Checked="CheckBoxDepart_Checked"/>
+                                                <materialDesign:TimePicker SelectedTime="{Binding TimeDeparture,Mode=TwoWay}" Is24Hours="True"> 
+                                                    <materialDesign:TimePicker.Resources>
+                                                        <Style TargetType="materialDesign:TimePicker">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxDepart, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </materialDesign:TimePicker.Resources>
+                                                </materialDesign:TimePicker>
+                                                <CheckBox x:Name="CheckBoxArrival" Content="Прибыл" IsChecked="{Binding ArrivalChecked}" 
+                                                  Checked="CheckBoxArrival_Checked" Unchecked="CheckBoxArrival_Unchecked">
+                                                    <CheckBox.Resources>
+                                                        <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxDepart, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </CheckBox.Resources>
+                                                </CheckBox>
+                                                <materialDesign:TimePicker SelectedTime="{Binding TimeArrival,Mode=TwoWay}" Is24Hours="True">
+                                                    <materialDesign:TimePicker.Resources>
+                                                        <Style TargetType="materialDesign:TimePicker">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxArrival, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </materialDesign:TimePicker.Resources>
+                                                </materialDesign:TimePicker>
+                                                <TextBox Width="40" Text="{Binding PeopleCount}" x:Name="TbPeopleCount" Padding="5" Margin="5" MaxLength="1" HorizontalAlignment="Left"
+                                    materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" PreviewTextInput="TbPeopleCount_PreviewTextInput" TextChanged="TbPeopleCount_TextChanged">
+                                                    <TextBox.Resources>
+                                                        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxArrival, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBox.Resources>
+                                                </TextBox>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </materialDesign:ColorZone>
+                    <!--5 ранг пожара-->
+                    <materialDesign:ColorZone x:Name="ColorZoneRank5" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1" Margin="5,0,0,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Ранг №5" HorizontalAlignment="Center"/>
+                            <ListView Grid.Row="1" x:Name="ListViewRank5" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{StaticResource MaterialDesignListView}"
+                          ItemContainerStyle="{StaticResource ListViewItem}" Margin="10">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel HorizontalAlignment="Center"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding SubdivisionName}" HorizontalAlignment="Center"/>
+                                                <CheckBox x:Name="CheckBoxDepart" Content="Выезд" IsChecked="{Binding DepartureChecked}" Style="{StaticResource MaterialDesignCheckBox}"
+                                                  Checked="CheckBoxDepart_Checked"/>
+                                                <materialDesign:TimePicker SelectedTime="{Binding TimeDeparture,Mode=TwoWay}" Is24Hours="True">
+                                                    <materialDesign:TimePicker.Resources>
+                                                        <Style TargetType="materialDesign:TimePicker">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxDepart, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </materialDesign:TimePicker.Resources>
+                                                </materialDesign:TimePicker>
+                                                <CheckBox x:Name="CheckBoxArrival" Content="Прибыл" IsChecked="{Binding ArrivalChecked}" 
+                                                  Checked="CheckBoxArrival_Checked" Unchecked="CheckBoxArrival_Unchecked">
+                                                    <CheckBox.Resources>
+                                                        <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxDepart, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </CheckBox.Resources>
+                                                </CheckBox>
+                                                <materialDesign:TimePicker SelectedTime="{Binding TimeArrival,Mode=TwoWay}" Is24Hours="True">
+                                                    <materialDesign:TimePicker.Resources>
+                                                        <Style TargetType="materialDesign:TimePicker">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxArrival, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </materialDesign:TimePicker.Resources>
+                                                </materialDesign:TimePicker>
+                                                <TextBox Width="40" Text="{Binding PeopleCount}" x:Name="TbPeopleCount" Padding="5" Margin="5" MaxLength="1" HorizontalAlignment="Left"
+                                    materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" PreviewTextInput="TbPeopleCount_PreviewTextInput" TextChanged="TbPeopleCount_TextChanged">
+                                                    <TextBox.Resources>
+                                                        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxArrival, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBox.Resources>
+                                                </TextBox>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </materialDesign:ColorZone>
+                </WrapPanel>
+                <materialDesign:ColorZone Background="MediumPurple" Padding="1" Margin="0,3,0,0">
+                    <TextBlock Text="Подраздел 2.2. Учет прибытия сил и средств местного звена ТП РСЧС, иные службы" HorizontalAlignment="Center" Foreground="White" FontSize="15"/>
+                </materialDesign:ColorZone>
+                <WrapPanel HorizontalAlignment="Center" Margin="5">
+                    <materialDesign:ColorZone x:Name="ColorZoneServiceType" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Иные службы" FontWeight="Bold" HorizontalAlignment="Center"/>
+                            <ListView Grid.Row="1" x:Name="ListViewServiceTypes" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{StaticResource MaterialDesignListView}"
+                          ItemContainerStyle="{StaticResource ListViewItem}" Margin="10">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel HorizontalAlignment="Center"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding ServiceTypeName}" HorizontalAlignment="Center"/>
+                                                <CheckBox x:Name="CheckBoxDepartService" Content="Выезд" IsChecked="{Binding DepartureChecked}" Style="{StaticResource MaterialDesignCheckBox}"
+                                                  Checked="CheckBoxDepartService_Checked"/>
+                                                <materialDesign:TimePicker SelectedTime="{Binding TimeDeparture,Mode=TwoWay}" Is24Hours="True">
+                                                    <materialDesign:TimePicker.Resources>
+                                                        <Style TargetType="materialDesign:TimePicker">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxDepartService, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </materialDesign:TimePicker.Resources>
+                                                </materialDesign:TimePicker>
+                                                <CheckBox x:Name="CheckBoxArrivalService" Content="Прибытие" IsChecked="{Binding ArrivalChecked}" 
+                                                  Checked="CheckBoxArrivalService_Checked" Unchecked="CheckBoxArrivalService_Unchecked">
+                                                    <CheckBox.Resources>
+                                                        <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxDepartService, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </CheckBox.Resources>
+                                                </CheckBox>
+                                                <materialDesign:TimePicker SelectedTime="{Binding TimeArrival,Mode=TwoWay}" Is24Hours="True">
+                                                    <materialDesign:TimePicker.Resources>
+                                                        <Style TargetType="materialDesign:TimePicker">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxArrivalService, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </materialDesign:TimePicker.Resources>
+                                                </materialDesign:TimePicker>
+                                                <TextBlock Text="Личный состав" HorizontalAlignment="Left"/>
+                                                <TextBox Width="40" Text="{Binding PeopleCount}" x:Name="TbPeopleCount" Padding="5" Margin="5" MaxLength="2" HorizontalAlignment="Left"
+                                     materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" PreviewTextInput="TbPeopleCount_PreviewTextInput" TextChanged="TbPeopleCount_TextChanged">
+                                                    <TextBox.Resources>
+                                                        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxArrivalService, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBox.Resources>
+                                                </TextBox>
+                                                <TextBlock Text="Техника" HorizontalAlignment="Left"/>
+                                                <TextBox Width="40" Text="{Binding TechnicCount}" x:Name="TbTechnicCount" Padding="5" Margin="5" MaxLength="2" HorizontalAlignment="Left"
+                                                    materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" PreviewTextInput="TbTechnicCount_PreviewTextInput" TextChanged="TbTechnicCount_TextChanged">
+                                                    <TextBox.Resources>
+                                                        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxArrivalService, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBox.Resources>
+                                                </TextBox>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </materialDesign:ColorZone>
+                </WrapPanel>
+                <materialDesign:ColorZone Background="MediumPurple" Padding="1" Margin="0,3,0,0">
+                    <TextBlock Text="Подраздел 2.3. Учет прибытия должностных лиц" HorizontalAlignment="Center" Foreground="White" FontSize="15"/>
+                </materialDesign:ColorZone>
+                <WrapPanel HorizontalAlignment="Center" Margin="5">
+                    <materialDesign:ColorZone x:Name="ColorZonePositionType" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <ListView Grid.Row="1" x:Name="ListViewPositionTypes" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{StaticResource MaterialDesignListView}"
+                          ItemContainerStyle="{StaticResource ListViewItem}" Margin="10">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel HorizontalAlignment="Center"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding PositionTypeName}" HorizontalAlignment="Center"/>
+                                                
+                                                <CheckBox x:Name="CheckBoxArrivalPosition" Content="Прибыл" IsChecked="{Binding ArrivalChecked}" 
+                                                  Checked="CheckBoxArrivalPosition_Checked" Unchecked="CheckBoxArrivalPosition_Unchecked">
+                                                </CheckBox>
+                                                <materialDesign:TimePicker SelectedTime="{Binding TimeArrival,Mode=TwoWay}" Is24Hours="True">
+                                                    <materialDesign:TimePicker.Resources>
+                                                        <Style TargetType="materialDesign:TimePicker">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=CheckBoxArrivalPosition, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </materialDesign:TimePicker.Resources>
+                                                </materialDesign:TimePicker>
+                                                
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </materialDesign:ColorZone>
+                </WrapPanel>
+                <materialDesign:ColorZone Background="MediumPurple" Padding="1" Margin="0,3,0,0">
+                    <TextBlock Text="Подраздел 2.4. Количество задействованных сил и общая информация" HorizontalAlignment="Center" Foreground="White" FontSize="15"/>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone BorderBrush="Black" x:Name="ColorZoneGeneralInfo" Visibility="Collapsed" BorderThickness="2" Padding="5" Margin="3">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.6*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel >
+                            <TextBlock Text="Итого привлечено техники (ед.)" HorizontalAlignment="Left" FontWeight="Bold"/>
+                            <ListView x:Name="ListViewDepTechnics" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{StaticResource MaterialDesignListView}"
+                          ItemContainerStyle="{StaticResource ListViewItemTechnic}" Margin="10">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel HorizontalAlignment="Left"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding TechnicName}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                <TextBox Width="40" Text="{Binding TechnicCountGeneral,Mode=TwoWay}" x:Name="TbTechnicCount" Padding="5" Margin="5,0" MaxLength="3" HorizontalAlignment="Left" IsReadOnly="True"
+                                                    materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" Style="{StaticResource MaterialDesignOutlinedTextBox}" PreviewTextInput="TbPeopleCount_PreviewTextInput">
+                                                </TextBox>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBlock Text="Подано стволов (ед.)" FontWeight="Bold"/>
+                                <TextBox Width="60" Text="{Binding BarrelCount, Mode=TwoWay}" x:Name="TbCountSteam" Padding="5" Margin="5,0" MaxLength="6" HorizontalAlignment="Left" IsReadOnly="True"
+                                                    materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" Style="{StaticResource MaterialDesignOutlinedTextBox}" PreviewTextInput="TbPeopleCount_PreviewTextInput">
+                                </TextBox>
+                                <TextBlock Text="Площадь пожара (м2)" FontWeight="Bold"/>
+                                <TextBox Width="100" Text="{Binding FireAreaCount,Mode=TwoWay}" x:Name="TbSquareFire" Padding="5" Margin="5,0" MaxLength="10" HorizontalAlignment="Left" IsReadOnly="True"
+                                                    materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" Style="{StaticResource MaterialDesignOutlinedTextBox}" PreviewTextInput="TbPeopleCount_PreviewTextInput">
+                                </TextBox>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <CheckBox Name="CheckBoxFireEnd" Content="Локализация пожара" Width="260" IsChecked="{Binding IsFireContainment}" Checked="CheckBoxFireEnd_Checked"/>
+                                <DatePicker Name="DatePickerFireEnd" Width="100" SelectedDate="{Binding DateTimeFireContainment, Mode=TwoWay}">
+                                    <DatePicker.Resources>
+                                        <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                            <Setter Property="Margin" Value="5,0"/>
+                                            <Setter Property="Padding" Value="5"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=CheckBoxFireEnd, Path=IsChecked}" Value="True">
+                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DatePicker.Resources>
+                                </DatePicker>
+                                <materialDesign:TimePicker Width="80" x:Name="TimePickerFireEnd" SelectedTime="{Binding DateTimeFireContainment,Mode=TwoWay}" Is24Hours="True">
+                                    <materialDesign:TimePicker.Resources>
+                                        <Style TargetType="materialDesign:TimePicker" BasedOn="{StaticResource MaterialDesignOutlinedTimePicker}">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                            <Setter Property="Padding" Value="5"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=CheckBoxFireEnd, Path=IsChecked}" Value="True">
+                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </materialDesign:TimePicker.Resources>
+                                </materialDesign:TimePicker>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5">
+                                <CheckBox Name="CheckBoxOpenFire" Content="Локализация открытого горения" Width="260" IsChecked="{Binding IsOpenBurning}" Checked="CheckBoxOpenFire_Checked"/>
+                                <DatePicker Width="100" x:Name="DatePickerOpenFire" SelectedDate="{Binding DateTimeOpenBurn, Mode=TwoWay}">
+                                    <DatePicker.Resources>
+                                        <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                            <Setter Property="Margin" Value="5,0"/>
+                                            <Setter Property="Padding" Value="5"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=CheckBoxOpenFire, Path=IsChecked}" Value="True">
+                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DatePicker.Resources>
+                                </DatePicker>
+                                <materialDesign:TimePicker Width="80" x:Name="TimePickerOpenFire" SelectedTime="{Binding DateTimeOpenBurn,Mode=TwoWay}" Is24Hours="True">
+                                    <materialDesign:TimePicker.Resources>
+                                        <Style TargetType="materialDesign:TimePicker" BasedOn="{StaticResource MaterialDesignOutlinedTimePicker}">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                            <Setter Property="Padding" Value="5"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=CheckBoxOpenFire, Path=IsChecked}" Value="True">
+                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </materialDesign:TimePicker.Resources>
+                                </materialDesign:TimePicker>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <CheckBox Name="CheckBoxAftermathFire" Content="Ликвидация последствия пожара" Width="260" IsChecked="{Binding IsAftermathFire}" Checked="CheckBoxAftermathFire_Checked"/>
+                                <DatePicker Width="100" x:Name="DatePickerAftermathFire" SelectedDate="{Binding DateTimeAftermath,Mode=TwoWay}">
+                                    <DatePicker.Resources>
+                                        <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                            <Setter Property="Margin" Value="5,0"/>
+                                            <Setter Property="Padding" Value="5"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=CheckBoxAftermathFire, Path=IsChecked}" Value="True">
+                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DatePicker.Resources>
+                                </DatePicker>
+                                <materialDesign:TimePicker Width="80" x:Name="TimePickerAftermathFire" SelectedTime="{Binding DateTimeAftermath,Mode=TwoWay}" Is24Hours="True">
+                                    <materialDesign:TimePicker.Resources>
+                                        <Style TargetType="materialDesign:TimePicker" BasedOn="{StaticResource MaterialDesignOutlinedTimePicker}">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                            <Setter Property="Padding" Value="5"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=CheckBoxAftermathFire, Path=IsChecked}" Value="True">
+                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </materialDesign:TimePicker.Resources>
+                                </materialDesign:TimePicker>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <TextBlock Text="Всего привлекалось"/>
+                                <TextBox Width="60" Text="" x:Name="TbGeneralCountPeople" Padding="5" Margin="5,0" MaxLength="6" HorizontalAlignment="Left" IsReadOnly="True"
+                                                    materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" Style="{StaticResource MaterialDesignOutlinedTextBox}" PreviewTextInput="TbPeopleCount_PreviewTextInput">
+                                </TextBox>
+                                <TextBlock Text="человек"/>
+                                <TextBox Width="60" Text="" x:Name="TbGeneralCountTechnic" Padding="5" Margin="5,0" MaxLength="10" HorizontalAlignment="Left" IsReadOnly="True"
+                                                    materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" Style="{StaticResource MaterialDesignOutlinedTextBox}" PreviewTextInput="TbPeopleCount_PreviewTextInput">
+                                </TextBox>
+                                <TextBlock Text="ед. техники"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <TextBlock Text="В том числе от МЧС "/>
+                                <TextBox Width="60" Text="" x:Name="TbMCSCountPeople" Padding="5" Margin="5,0" MaxLength="6" HorizontalAlignment="Left" IsReadOnly="True"
+                                                    materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" Style="{StaticResource MaterialDesignOutlinedTextBox}" PreviewTextInput="TbPeopleCount_PreviewTextInput">
+                                </TextBox>
+                                <TextBlock Text="человек"/>
+                                <TextBox Width="60" Text="" x:Name="TbMCSCountTechnic" Padding="5" Margin="5,0" MaxLength="10" HorizontalAlignment="Left" IsReadOnly="True"
+                                                    materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" Style="{StaticResource MaterialDesignOutlinedTextBox}" PreviewTextInput="TbPeopleCount_PreviewTextInput">
+                                </TextBox>
+                                <TextBlock Text="ед. техники"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone Background="MediumPurple" Padding="1" Margin="0,3,0,0">
+                    <TextBlock Text="Информация с места пожара, аварии или ЧС" HorizontalAlignment="Center" Foreground="White" FontSize="15"/>
+                </materialDesign:ColorZone>
+                <Button x:Name="BtnAddFireInfo" Visibility="Collapsed" Content="{materialDesign:PackIcon Kind=Add}" HorizontalAlignment="Right" Margin="10" Click="BtnAddFireInfo_Click" ToolTip="Добавить"/>
+                <DataGrid x:Name="DataGridFireInfo" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Время поступления информации" Binding="{Binding DateTimeEntry, StringFormat={}{0:HH.mm}}" Width="0.5*" ElementStyle="{StaticResource textWrap}"/>
+                        <DataGridTextColumn Header="Кто передал" Binding="{Binding Broadcast.BroadcastName}" Width="0.8*" ElementStyle="{StaticResource textWrap2}"/>
+                        <DataGridTextColumn Header="Информация с места" Binding="{Binding InfoPlace}" Width="2*" ElementStyle="{StaticResource textWrap2}"/>
+                        <DataGridTextColumn Header="Разновидность работ" Binding="{Binding WorkVariety}" Width="*" ElementStyle="{StaticResource textWrap2}"/>
+                        <DataGridTextColumn Header="Приданные силы" Binding="{Binding ListSubdivisions}" Width="*" ElementStyle="{StaticResource textWrap}"/>
+                        <DataGridTextColumn Header="Задача" Binding="{Binding MissionType.MissionTypeName}" Width="*" ElementStyle="{StaticResource textWrap2}"/>
+                        <DataGridTextColumn Header="Участок работы" Binding="{Binding WorkArea.WorkAreaName}" Width="0.7*" ElementStyle="{StaticResource textWrap2}"/>
+                        <DataGridTextColumn Header="Тип стволов" Binding="{Binding BarrelType.BarrelTypeName}" Width="0.6*" ElementStyle="{StaticResource textWrap2}"/>
+                        <DataGridTextColumn Header="Кол-во стволов" Binding="{Binding BarrelCount}" Width="0.4*" ElementStyle="{StaticResource textWrap2}"/>
+                        <DataGridTextColumn Header="Боевой участок" Binding="{Binding CombatArea.CombatAreaName}" Width="0.5*" ElementStyle="{StaticResource textWrap2}"/>
+                        <DataGridTextColumn Header="Доп. инф-ция" Binding="{Binding AddInfo}" Width="*" ElementStyle="{StaticResource textWrap2}"/>
+                        <DataGridTemplateColumn Width="auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="BtnEdit" Content="{materialDesign:PackIcon Kind=Edit}"  ToolTip="Редактировать" Click="BtnEdit_Click"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="BtnDell" Content="{materialDesign:PackIcon Kind=Delete}" ToolTip="Удалить" Click="BtnDell_Click"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" FontSize="11" TextWrapping="Wrap"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                </DataGrid>
+                
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>

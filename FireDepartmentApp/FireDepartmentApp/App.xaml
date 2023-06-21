@@ -1,0 +1,115 @@
+﻿<Application x:Class="FireDepartmentApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:FireDepartmentApp"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             StartupUri="/Windows/MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- This is the current way to setup your app's initial theme -->
+                <materialDesign:BundledTheme BaseTheme="Inherit"
+                                     ColorAdjustment="{materialDesign:ColorAdjustment}"
+                                     PrimaryColor="DeepPurple"
+                                     SecondaryColor="Lime" />
+
+                <!-- If you would prefer to use your own colors there is an option for that as well -->
+                <!--<materialDesign:CustomColorTheme BaseTheme="Light" PrimaryColor="Aqua" SecondaryColor="DarkGreen" />-->
+
+                <!--You can also use the built in theme dictionaries as well-->
+                <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />-->
+                <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />-->
+                <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />-->
+
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+            <!--<Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            </Style>-->
+            <Style TargetType="materialDesign:ColorZone" x:Key="ColorZone">
+                <Setter Property="Width" Value="200"/>
+                <Setter Property="Height" Value="140"/>
+                <Setter Property="BorderBrush" Value="Black"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="Margin" Value="2"/>
+                <Setter Property="CornerRadius" Value="10"/>
+            </Style>
+
+            <Style TargetType="TextBlock" x:Key="textWrap">
+                <Setter Property="TextWrapping" Value="Wrap"/>
+            </Style>
+            <Style TargetType="TextBlock" x:Key="textWrap2">
+                <Setter Property="TextWrapping" Value="Wrap"/>
+                <Setter Property="FontSize" Value="12"/>
+            </Style>
+            <Style TargetType="materialDesign:ColorZone" x:Key="ColorZoneAdditional" BasedOn="{StaticResource ColorZone}">
+                <Setter Property="Height" Value="330"/>
+            </Style>
+
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Comic Sans MS"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Margin" Value="3"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+
+            <Style TargetType="ListViewItem" BasedOn="{StaticResource MaterialDesignListBoxItem}" x:Key="ListViewItem">
+                <Setter Property="BorderBrush" Value="Black"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                
+            </Style>
+            <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItem}" x:Key="ListViewItemDepart">
+                <Setter Property="Margin" Value="1"/>
+            </Style>
+            <Style TargetType="ListViewItem" BasedOn="{StaticResource MaterialDesignListBoxItem}" x:Key="ListViewItemTechnic">
+                <Setter Property="BorderBrush" Value="Black"/>
+                <Setter Property="BorderThickness" Value="0"/>
+
+            </Style>
+            <Style TargetType="TreeViewItem" BasedOn="{StaticResource MaterialDesignTreeViewItem}">
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HeaderTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontSize="10" TextWrapping="Wrap"/>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="1"/>
+                    </Style>
+                </Style.Resources>
+            </Style>
+            <!--<Style TargetType="TabControl" BasedOn="{StaticResource MaterialDesignFilledTabControl}" x:Key="tabControl">
+                <Style.Resources>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Background" Value="MediumPurple"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                    </Style>
+                </Style.Resources>
+            </Style>-->
+            <!--<Style TargetType="TextBox" >
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontFamily" Value="Comic Sans MS"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Padding" Value="5"/>
+            </Style>
+
+            <Style TargetType="ComboBox">
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Padding" Value="5"/>
+            </Style>
+
+            <Style TargetType="DatePicker">
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Padding" Value="5"/>
+            </Style>-->
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

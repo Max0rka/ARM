@@ -1,0 +1,27 @@
+﻿<Window x:Class="FireDepartmentApp.Windows.AddOrEditWindow.AddOrEditDivDepAreaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FireDepartmentApp.Windows.AddOrEditWindow"
+        mc:Ignorable="d"
+        Title="Добавление/Редактирование прив. подразделения" Height="240" Width="400" MinHeight="240" MinWidth="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Название" HorizontalAlignment="Left" Margin="5"/>
+            <ComboBox x:Name="ComboBoxDivision" Margin="5" Width="300" Padding="5" Style="{StaticResource MaterialDesignOutlinedComboBox}" MaxHeight="36"
+                                          DisplayMemberPath="DivisionName" SelectedItem="{Binding Division}" SelectionChanged="ComboBoxDivision_SelectionChanged"/>
+            <TextBlock Text="Техника" HorizontalAlignment="Left" Margin="5"/>
+            <ComboBox x:Name="ComboBoxTechnics" Margin="5" Width="300" Padding="5" Style="{StaticResource MaterialDesignOutlinedComboBox}" MaxHeight="36"
+                                          DisplayMemberPath="TechnicName" SelectedItem="{Binding Technic}" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <Button x:Name="BtnOk" Content="Ok" Click="BtnOk_Click" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+            <Button x:Name="BtnCancel" Content="Cancel" Click="BtnCancel_Click" Style="{StaticResource MaterialDesignFlatLightBgButton}" Margin="10,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>

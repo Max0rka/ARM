@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="96a638f08c5044fe9fed67ac15a0cd05" Name="Diagram1">
+        <EntityTypeShape EntityType="FireDepartModel.AlignmentFoce" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.BarrelType" Width="1.5" PointX="5.25" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.Broadcast" Width="1.5" PointX="5.25" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.BurnType" Width="1.5" PointX="8.25" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.CombatArea" Width="1.5" PointX="5.25" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.CombatDepForce" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.DepartureArea" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.DepartureBurn" Width="1.5" PointX="10.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.DeparturePosition" Width="1.5" PointX="10.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.Departure" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.DepartureService" Width="1.5" PointX="7.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.DepartureSubdivision" Width="1.5" PointX="10.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.Division" Width="1.5" PointX="6" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.FireInfo" Width="1.5" PointX="7.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.FireInfoSubdivision" Width="1.5" PointX="13.5" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.MissionType" Width="1.5" PointX="5.25" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.PositionType" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.ServiceType" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.Settlement" Width="1.5" PointX="0.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.Street" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.Subdivision" Width="1.5" PointX="8.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.sysdiagram" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.TechnicDivision" Width="1.5" PointX="13.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.Technic" Width="1.5" PointX="6" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FireDepartModel.WorkArea" Width="1.5" PointX="5.25" PointY="33.375" IsExpanded="true" />
+        <AssociationConnector Association="FireDepartModel.FK_FireInfo_BarrelTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_FireInfo_Broadcasts" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_DepartureBurns_BurnTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_FireInfo_CombatAreas" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_DepartureAreas_Settlements" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_Departures_DepartureAreas" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_Subdivisions_DepartureAreas" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_DepartureBurns_Departures" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_DeparturePositions_Departures" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_DeparturePositions_PositionTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_DepartureDivisions_Departures" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_Departures_Streets" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_DepartureServices_Departures" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_FireInfo_Departures" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_DepartureServices_ServiceTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_DepartureSubdivisions_Subdivisions" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_Subdivisions_Divisions" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_TechnicDivisions_Divisions" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_FireInfo_MissionTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_FireInfo_WorkAreas" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_FireInfoSubdivisions_FireInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_FireInfoSubdivisions_Subdivisions" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_Subdivisions_Technics" ManuallyRouted="false" />
+        <AssociationConnector Association="FireDepartModel.FK_TechnicDivisions_Technics" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

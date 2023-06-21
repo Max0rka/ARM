@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище FireDepartModelContainer" CdmEntityContainer="FireDepartEntities">
+    <EntitySetMapping Name="AlignmentFoces">
+      <EntityTypeMapping TypeName="FireDepartModel.AlignmentFoce">
+        <MappingFragment StoreEntitySet="AlignmentFoces">
+          <ScalarProperty Name="AlignmentFoceId" ColumnName="AlignmentFoceId" />
+          <ScalarProperty Name="AlignmentFoceName" ColumnName="AlignmentFoceName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BarrelTypes">
+      <EntityTypeMapping TypeName="FireDepartModel.BarrelType">
+        <MappingFragment StoreEntitySet="BarrelTypes">
+          <ScalarProperty Name="BarrelTypeId" ColumnName="BarrelTypeId" />
+          <ScalarProperty Name="BarrelTypeName" ColumnName="BarrelTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Broadcasts">
+      <EntityTypeMapping TypeName="FireDepartModel.Broadcast">
+        <MappingFragment StoreEntitySet="Broadcasts">
+          <ScalarProperty Name="BroadcastId" ColumnName="BroadcastId" />
+          <ScalarProperty Name="BroadcastName" ColumnName="BroadcastName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BurnTypes">
+      <EntityTypeMapping TypeName="FireDepartModel.BurnType">
+        <MappingFragment StoreEntitySet="BurnTypes">
+          <ScalarProperty Name="BurnTypeId" ColumnName="BurnTypeId" />
+          <ScalarProperty Name="BurnTypeName" ColumnName="BurnTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CombatAreas">
+      <EntityTypeMapping TypeName="FireDepartModel.CombatArea">
+        <MappingFragment StoreEntitySet="CombatAreas">
+          <ScalarProperty Name="CombatAreaId" ColumnName="CombatAreaId" />
+          <ScalarProperty Name="CombatAreaName" ColumnName="CombatAreaName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CombatDepForces">
+      <EntityTypeMapping TypeName="FireDepartModel.CombatDepForce">
+        <MappingFragment StoreEntitySet="CombatDepForces">
+          <ScalarProperty Name="CombatDepForceId" ColumnName="CombatDepForceId" />
+          <ScalarProperty Name="CombatDepForceName" ColumnName="CombatDepForceName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DepartureAreas">
+      <EntityTypeMapping TypeName="FireDepartModel.DepartureArea">
+        <MappingFragment StoreEntitySet="DepartureAreas">
+          <ScalarProperty Name="DepartureAreaId" ColumnName="DepartureAreaId" />
+          <ScalarProperty Name="SettlementId" ColumnName="SettlementId" />
+          <ScalarProperty Name="DepartureAreaName" ColumnName="DepartureAreaName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DepartureBurns">
+      <EntityTypeMapping TypeName="FireDepartModel.DepartureBurn">
+        <MappingFragment StoreEntitySet="DepartureBurns">
+          <ScalarProperty Name="DepartureBurnId" ColumnName="DepartureBurnId" />
+          <ScalarProperty Name="DepartureId" ColumnName="DepartureId" />
+          <ScalarProperty Name="BurnTypeId" ColumnName="BurnTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeparturePositions">
+      <EntityTypeMapping TypeName="FireDepartModel.DeparturePosition">
+        <MappingFragment StoreEntitySet="DeparturePositions">
+          <ScalarProperty Name="DeparturePositionId" ColumnName="DeparturePositionId" />
+          <ScalarProperty Name="DepartureId" ColumnName="DepartureId" />
+          <ScalarProperty Name="PositionTypeId" ColumnName="PositionTypeId" />
+          <ScalarProperty Name="DateTimeArrival" ColumnName="DateTimeArrival" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departures">
+      <EntityTypeMapping TypeName="FireDepartModel.Departure">
+        <MappingFragment StoreEntitySet="Departures">
+          <ScalarProperty Name="DepartureId" ColumnName="DepartureId" />
+          <ScalarProperty Name="DateTimeDepart" ColumnName="DateTimeDepart" />
+          <ScalarProperty Name="DepartureAreaId" ColumnName="DepartureAreaId" />
+          <ScalarProperty Name="StreetId" ColumnName="StreetId" />
+          <ScalarProperty Name="NumHouse" ColumnName="NumHouse" />
+          <ScalarProperty Name="NumCorp" ColumnName="NumCorp" />
+          <ScalarProperty Name="NumAppart" ColumnName="NumAppart" />
+          <ScalarProperty Name="Landmark" ColumnName="Landmark" />
+          <ScalarProperty Name="ApplicantPhone" ColumnName="ApplicantPhone" />
+          <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+          <ScalarProperty Name="ExternalSignsInfo" ColumnName="ExternalSignsInfo" />
+          <ScalarProperty Name="ExternalSignAddInfo" ColumnName="ExternalSignAddInfo" />
+          <ScalarProperty Name="ThreatPeopleInfo" ColumnName="ThreatPeopleInfo" />
+          <ScalarProperty Name="ThreatPeopleCount" ColumnName="ThreatPeopleCount" />
+          <ScalarProperty Name="ThreatPeopleAddInfo" ColumnName="ThreatPeopleAddInfo" />
+          <ScalarProperty Name="AffectedInfo" ColumnName="AffectedInfo" />
+          <ScalarProperty Name="AffectedCount" ColumnName="AffectedCount" />
+          <ScalarProperty Name="AffectedAddInfo" ColumnName="AffectedAddInfo" />
+          <ScalarProperty Name="StatePeopleInfo" ColumnName="StatePeopleInfo" />
+          <ScalarProperty Name="StatePeopleAddInfo" ColumnName="StatePeopleAddInfo" />
+          <ScalarProperty Name="PeopleLocationInfo" ColumnName="PeopleLocationInfo" />
+          <ScalarProperty Name="PeopleLocationAddInfo" ColumnName="PeopleLocationAddInfo" />
+          <ScalarProperty Name="ThreatFireInfo" ColumnName="ThreatFireInfo" />
+          <ScalarProperty Name="ThreatFireAddInfo" ColumnName="ThreatFireAddInfo" />
+          <ScalarProperty Name="NearbyObjectInfo" ColumnName="NearbyObjectInfo" />
+          <ScalarProperty Name="NearbyObjectAddInfo" ColumnName="NearbyObjectAddInfo" />
+          <ScalarProperty Name="PlaceInfo" ColumnName="PlaceInfo" />
+          <ScalarProperty Name="PlaceAddInfo" ColumnName="PlaceAddInfo" />
+          <ScalarProperty Name="BarrierInfo" ColumnName="BarrierInfo" />
+          <ScalarProperty Name="BarrierAddInfo" ColumnName="BarrierAddInfo" />
+          <ScalarProperty Name="MeetMCSInfo" ColumnName="MeetMCSInfo" />
+          <ScalarProperty Name="MeetMCSAddInfo" ColumnName="MeetMCSAddInfo" />
+          <ScalarProperty Name="WhyApplicantInfo" ColumnName="WhyApplicantInfo" />
+          <ScalarProperty Name="WhyApplicantAddInfo" ColumnName="WhyApplicantAddInfo" />
+          <ScalarProperty Name="FIOApplicant" ColumnName="FIOApplicant" />
+          <ScalarProperty Name="IsFireContainment" ColumnName="IsFireContainment" />
+          <ScalarProperty Name="DateTimeFireContainment" ColumnName="DateTimeFireContainment" />
+          <ScalarProperty Name="IsOpenBurning" ColumnName="IsOpenBurning" />
+          <ScalarProperty Name="DateTimeOpenBurn" ColumnName="DateTimeOpenBurn" />
+          <ScalarProperty Name="IsAftermathFire" ColumnName="IsAftermathFire" />
+          <ScalarProperty Name="DateTimeAftermath" ColumnName="DateTimeAftermath" />
+          <ScalarProperty Name="FireAreaCount" ColumnName="FireAreaCount" />
+          <ScalarProperty Name="BarrelCount" ColumnName="BarrelCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DepartureServices">
+      <EntityTypeMapping TypeName="FireDepartModel.DepartureService">
+        <MappingFragment StoreEntitySet="DepartureServices">
+          <ScalarProperty Name="DepartureServiceId" ColumnName="DepartureServiceId" />
+          <ScalarProperty Name="CountPeople" ColumnName="CountPeople" />
+          <ScalarProperty Name="CountTechnics" ColumnName="CountTechnics" />
+          <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeId" />
+          <ScalarProperty Name="DepartureId" ColumnName="DepartureId" />
+          <ScalarProperty Name="DateTimeDeparture" ColumnName="DateTimeDeparture" />
+          <ScalarProperty Name="DateTimeArrival" ColumnName="DateTimeArrival" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DepartureSubdivisions">
+      <EntityTypeMapping TypeName="FireDepartModel.DepartureSubdivision">
+        <MappingFragment StoreEntitySet="DepartureSubdivisions">
+          <ScalarProperty Name="DepartureSubdivisionId" ColumnName="DepartureSubdivisionId" />
+          <ScalarProperty Name="SubdivisionId" ColumnName="SubdivisionId" />
+          <ScalarProperty Name="DepartureId" ColumnName="DepartureId" />
+          <ScalarProperty Name="DateTimeDeparture" ColumnName="DateTimeDeparture" />
+          <ScalarProperty Name="DateTimeArrival" ColumnName="DateTimeArrival" />
+          <ScalarProperty Name="CountPeople" ColumnName="CountPeople" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Divisions">
+      <EntityTypeMapping TypeName="FireDepartModel.Division">
+        <MappingFragment StoreEntitySet="Divisions">
+          <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+          <ScalarProperty Name="DivisionName" ColumnName="DivisionName" />
+          <ScalarProperty Name="DivisionDescription" ColumnName="DivisionDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FireInfoes">
+      <EntityTypeMapping TypeName="FireDepartModel.FireInfo">
+        <MappingFragment StoreEntitySet="FireInfo">
+          <ScalarProperty Name="FireInfoId" ColumnName="FireInfoId" />
+          <ScalarProperty Name="DateTimeEntry" ColumnName="DateTimeEntry" />
+          <ScalarProperty Name="DepartureId" ColumnName="DepartureId" />
+          <ScalarProperty Name="BroadcastId" ColumnName="BroadcastId" />
+          <ScalarProperty Name="BarrelTypeId" ColumnName="BarrelTypeId" />
+          <ScalarProperty Name="BarrelCount" ColumnName="BarrelCount" />
+          <ScalarProperty Name="CombatAreaId" ColumnName="CombatAreaId" />
+          <ScalarProperty Name="MissionTypeId" ColumnName="MissionTypeId" />
+          <ScalarProperty Name="WorkAreaId" ColumnName="WorkAreaId" />
+          <ScalarProperty Name="InfoPlace" ColumnName="InfoPlace" />
+          <ScalarProperty Name="WorkVariety" ColumnName="WorkVariety" />
+          <ScalarProperty Name="AddInfo" ColumnName="AddInfo" />
+          <ScalarProperty Name="FireAreaCount" ColumnName="FireAreaCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FireInfoSubdivisions">
+      <EntityTypeMapping TypeName="FireDepartModel.FireInfoSubdivision">
+        <MappingFragment StoreEntitySet="FireInfoSubdivisions">
+          <ScalarProperty Name="FireInfoSubdivisionId" ColumnName="FireInfoSubdivisionId" />
+          <ScalarProperty Name="FireInfoId" ColumnName="FireInfoId" />
+          <ScalarProperty Name="SubdivisionId" ColumnName="SubdivisionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MissionTypes">
+      <EntityTypeMapping TypeName="FireDepartModel.MissionType">
+        <MappingFragment StoreEntitySet="MissionTypes">
+          <ScalarProperty Name="MissionTypeId" ColumnName="MissionTypeId" />
+          <ScalarProperty Name="MissionTypeName" ColumnName="MissionTypeName" />
+          <ScalarProperty Name="MissionTypeDescription" ColumnName="MissionTypeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PositionTypes">
+      <EntityTypeMapping TypeName="FireDepartModel.PositionType">
+        <MappingFragment StoreEntitySet="PositionTypes">
+          <ScalarProperty Name="PositionTypeId" ColumnName="PositionTypeId" />
+          <ScalarProperty Name="PositionTypeName" ColumnName="PositionTypeName" />
+          <ScalarProperty Name="PositionTypeDescription" ColumnName="PositionTypeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceTypes">
+      <EntityTypeMapping TypeName="FireDepartModel.ServiceType">
+        <MappingFragment StoreEntitySet="ServiceTypes">
+          <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeId" />
+          <ScalarProperty Name="ServiceTypeName" ColumnName="ServiceTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settlements">
+      <EntityTypeMapping TypeName="FireDepartModel.Settlement">
+        <MappingFragment StoreEntitySet="Settlements">
+          <ScalarProperty Name="SettlementId" ColumnName="SettlementId" />
+          <ScalarProperty Name="SettlementName" ColumnName="SettlementName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Streets">
+      <EntityTypeMapping TypeName="FireDepartModel.Street">
+        <MappingFragment StoreEntitySet="Streets">
+          <ScalarProperty Name="StreetId" ColumnName="StreetId" />
+          <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subdivisions">
+      <EntityTypeMapping TypeName="FireDepartModel.Subdivision">
+        <MappingFragment StoreEntitySet="Subdivisions">
+          <ScalarProperty Name="SubdivisionId" ColumnName="SubdivisionId" />
+          <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+          <ScalarProperty Name="TechnicId" ColumnName="TechnicId" />
+          <ScalarProperty Name="DepartureAreaId" ColumnName="DepartureAreaId" />
+          <ScalarProperty Name="FireRank" ColumnName="FireRank" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="FireDepartModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TechnicDivisions">
+      <EntityTypeMapping TypeName="FireDepartModel.TechnicDivision">
+        <MappingFragment StoreEntitySet="TechnicDivisions">
+          <ScalarProperty Name="TechnicDivisionId" ColumnName="TechnicDivisionId" />
+          <ScalarProperty Name="TechnicId" ColumnName="TechnicId" />
+          <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+          <ScalarProperty Name="CountTechnic" ColumnName="CountTechnic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Technics">
+      <EntityTypeMapping TypeName="FireDepartModel.Technic">
+        <MappingFragment StoreEntitySet="Technics">
+          <ScalarProperty Name="TechnicId" ColumnName="TechnicId" />
+          <ScalarProperty Name="TechnicName" ColumnName="TechnicName" />
+          <ScalarProperty Name="TechnicDescription" ColumnName="TechnicDescription" />
+          <ScalarProperty Name="TechnicImage" ColumnName="TechnicImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkAreas">
+      <EntityTypeMapping TypeName="FireDepartModel.WorkArea">
+        <MappingFragment StoreEntitySet="WorkAreas">
+          <ScalarProperty Name="WorkAreaId" ColumnName="WorkAreaId" />
+          <ScalarProperty Name="WorkAreaName" ColumnName="WorkAreaName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

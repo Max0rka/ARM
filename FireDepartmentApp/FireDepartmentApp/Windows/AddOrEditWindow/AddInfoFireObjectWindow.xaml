@@ -1,0 +1,342 @@
+﻿<Window x:Class="FireDepartmentApp.Windows.AddOrEditWindow.AddInfoFireObjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FireDepartmentApp.Windows.AddOrEditWindow" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Информация о здании (объекте)" Height="800" Width="900" MinHeight="800" MinWidth="1000" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="270"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="MaxHeight" Value="37"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="550"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TreeView x:Name="TreeViewObjectInfo" SelectedItemChanged="TreeViewObjectInfo_SelectedItemChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <TreeViewItem Header="Здания жилого назначения и надзорные постройки">
+                <TreeViewItem Header="Садовый дом, дача и др." Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Вагончик для жилья, дом мобильного типа, палатка и другое строение" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Надворная постройка" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Прочие здания, постройки" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Ограждение, забор на территории домовладения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Одноквартирный жилой дом" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Многоквартирный жилой дом" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Гараж, тент-укрытие и т.д. на территории домовладения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Баня, сауна на территории домовладения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Места открытого хранения веществ, материалов, сельскохозяйственные угодья и прочие открытые территории" x:Name="TVItemOpenObjects"
+                          Selected="TVItemOpenObjects_Selected" Unselected="TVItemOpenObjects_Unselected"/>
+            <TreeViewItem Header="Здание производственного назначения">
+                <TreeViewItem Header="Для содержания, эксплуатации и ремонта автомобильной, строительной и железнодорожной, авиационной и другой техники (гараж, железнодорожное депо, ангар для авиационной техники и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Компрессорная, газогенераторная, водородная и кислородная станция" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Насосная, очистные сооружения, промывочно-пропарочная станция" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Шахта, рудник" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Производственная и экспериментальная мастерская" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Производственная лаборатория" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Бытовые, вспомогательные, временные здания и постройки (бытовка, вагончик, сарай, хозблок, будка и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Энергоблок тепловой или гидравлической электростанции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Энергоблок атомной электростанции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Прочие здания производственного назначения">
+                    <TreeViewItem Header="По переработке, производству изделий из древесины (лесопильный, деревообрабатывающий, столярный, мебельный и др.)"
+                                  Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                    <TreeViewItem Header="По холодной обработке металлов (механический, инструментальный и др.)" Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                    <TreeViewItem Header="По производству и обработке текстильных материалов (чесальный, льнотрепальный, прядильный, ткацкий и др.)" Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                    <TreeViewItem Header="По термической и электрохимической обработке металлов (прокатный, плавильный, литейный, кузнечно-прессовый и др.)" Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                    <TreeViewItem Header="По изготовлению и обработке химических и нефтехимических продуктов, синтетических материалов, пластмасс, резины" Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                    <TreeViewItem Header="По производству изделий электроники, электротехники, приборостроения" Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                    <TreeViewItem Header="По производству целлюлозно-бумажной продукции" Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                    <TreeViewItem Header="По изготовлению машиностроительной продукции (сборочный и др." Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                    <TreeViewItem Header="По изготовлению швейных, трикотажных, кожевенных, меховых, обувных и других изделий" Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                    <TreeViewItem Header="По окраске материалов и изделий (малярный, окрасочный, сушки, полировки и др.)" Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                    <TreeViewItem Header="По производству строительных материалов, конструкций и изделий (цемента, кирпича, стекла, железобетонных конструкций, дверей, оконных блоков и др.)" Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                    <TreeViewItem Header="По переработке и изготовлению пищевых продуктов" Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                    <TreeViewItem Header="По производству химико-фармацевтических и микробиологических препаратов" Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                    <TreeViewItem Header="По производству полиграфической и кинофотопродукции (печатный, переплетный, изготовления кинофотопленки, фотопечати и др.)" Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                    <TreeViewItem Header="По производству ювелирных и художественных изделий" Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Вспомогательных производств (ремонтный, приготовительный и др.)">
+                    <TreeViewItem Header="По изготовлению горюче-смазочных материалов" Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                    <TreeViewItem Header="По изготовлению лакокрасочных материалов" Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                    <TreeViewItem Header="По изготовлению вино-водочной и слабоалкогольной продукции" Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                    <TreeViewItem Header="По зарядке и обслуживанию газовых баллонов" Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                    <TreeViewItem Header="По зарядке и обслуживанию аккумуляторных батарей" Selected="TVItemAllItem2_Selected" Unselected="TVItemAllItem2_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Дизельная электростанция" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Котельная" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Здание, помещение автосервиса, станции, центра техобслуживания, авто-, шиномонтажной мастерской" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Здание, помещение автомойки" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Складские здания, сооружения">
+                <TreeViewItem Header="Склад легковоспламеняющихся, горючих жидкостей в таре" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Склад сырья, промежуточной и готовой продукции предприятия (запчастей, комплектующих и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Склад химических веществ, минудобрений, ядохимикатов" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Склад лесопиломатериалов" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Прочее складское здание, сооружение" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Склад сыпучих материалов, пыли и волокон (зерна, муки, хлопка, порошков и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Склад угля, сланца, торфа" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Склад пожаровзрывоопасных газов в баллонах" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Склад продовольственных товаров, плодоовощная база" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Склад промышленных товаров" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Здание, сооружение холодильника для хранения пищевых продуктов или других веществ" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Склад со смешанным или универсальным ассортиментом товаров" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Склад кормов (сено, солома, силос, комбикорм и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Нефтяной резервуар, нефтехранилище" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Блок, контейнер хранения топлива на автозаправочной станци" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Прочие склады по хранению ЛВЖ, ГЖ" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Здания, сооружения для хранения автомобилей и других колесных транспортных средств">
+                <TreeViewItem Header="Сооружение открытой многоместной стоянки колесных транспортных средств" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Закрытая многоместная стоянка колесных транспортных средств" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Гараж (гаражный бокс) в гаражном кооперативе, индивидуальный гаражный бокс" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Здания, сооружения сельскохозяйственного назначения">
+                <TreeViewItem Header="Животноводческие здания и сооружения (крупный и мелкий рогатый скот, свиньи, лошади, ослы, олени, верблюды и др.)">
+                    <TreeViewItem Header="Для выращивания и содержания (ферма, летняя дойка, полевой стан)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для получения сельскохозяйственной продукции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для переработки продукции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для хранения продукции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для реализации продукции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Звероводческие здания и сооружения (пушной зверь, кролики и др.)">
+                    <TreeViewItem Header="Для выращивания и содержания" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для получения сельскохозяйственной продукции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для переработки продукции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для хранения продукции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для производства изделий и реализации продукции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Растениеводческие и овощеводческие здания и сооружения (овощи, фрукты, зерновые, зернобобовые, масленичные, клубнеплодные, корнеплодные, табак, орехи, ягоды и др.)">
+                    <TreeViewItem Header="Для переработки продукции (зерноток, зерносушилка и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для выращивания (теплица, парник и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для хранения продукции (элеватор, фрукто- и овощехранилище, склад и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для получения и реализации продукции (мельница, цех по производству сока, джема, виноводочных и табачных изделий, крахмала и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Птицеводческие здания и сооружения">
+                    <TreeViewItem Header="Для выращивания и содержания" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для получения сельскохозяйственной продукции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для переработки продукции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для хранения продукции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для производства изделий и реализации продукции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Рыбоводческие здания и сооружения">
+                    <TreeViewItem Header="Для выращивания" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для переработки продукции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для хранения продукции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для производства и реализации продукции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Прочие сельскохозяйственные здания и сооружения">
+                    <TreeViewItem Header="Прочие здания сельскохозяйственного назначения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для выращивания и содержания" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для переработки продукции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Здания, сооружения для хранения и приготовления кормов (кормоцех, склад для хранения сена, соломы, фуража, технических культур и др.">
+                    <TreeViewItem Header="Для хранения продукции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Для производства и реализации продукции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+            </TreeViewItem>
+            <TreeViewItem Header="Строящиеся (реконструируемые) здания (сооружения)">
+                <TreeViewItem Header="Промышленное здание (сооружение)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Сельскохозяйственное здание (сооружение)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Общественное здание" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Административное здание" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Многоквартирный жилой дом" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Одноквартирный жилой дом" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Складское здание (база, склад, холодильник и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Временные здания (сооружения) на строительной площадке (бытовка, вагончик и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Прочие здания и сооружения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Сооружения, установки промышленного назначения">
+                <TreeViewItem Header="Наружная установка предприятия нефтеперерабатывающей, химической и газовой промышленности (колонна ректификационная, трубчатая печь и др.)">
+                    <TreeViewItem Header="Судоверфь, док" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Нефтепровод" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Газопровод" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Буровая установка" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                    <TreeViewItem Header="Прочие сооружения, установки" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Электротрансформаторная подстанция, будка, трансформатор, электродизельная установка" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Опора электропередач и другие опоры" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Кабельный тоннель, галерея" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Водонапорная башня" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Градирня" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Битумоварочный котел, бак" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Неэксплуатируемое сооружение, установка" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Тоннель городской автодорожный" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Портовые сооружения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Сливо-наливные эстакады" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Сооружения сетей тепло- и водоснабжения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Транспортные средства">
+                <TreeViewItem Header="Грузовой автомобиль" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Легковой автомобиль" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Мототранспорт" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Автобус" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Трамвай" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Троллейбус" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Вагон метро" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Локомотив, тепловоз, электровоз" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Дизель-электропоезд" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Пассажирский вагон" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Грузовой вагон" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Ж/д передвижная спецмашина" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Передвижные машинные станции" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Морское, речное судно" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Воздушное судно" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Трактор" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Сельскохозяйственная техника" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Ремонтно-дорожная и строительная техника" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Специальная техника" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Прочее транспортное средство" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Специальный вагон" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Железнодорожная цистерна" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Автомобильная цистерна" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Лодка" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Катер" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Бесхозяйное транспортное средство" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Здания, сооружения и помещения и предприятий торговли">
+                <TreeViewItem Header="Магазины со смешанным ассортиментом товаров" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Крытый рынок розничной и (или) оптовой торговли" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Киоск, ларек, палатка, в том числе контейнерного типа" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Прочие объекты торговли" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Универсальный магазин" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Специализированный непродовольственный магазин" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Неспециализированный продовольственный магазин" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Открытый рынок розничной и (или) оптовой торговли" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Специализированный продовольственный магазин" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Магазин прочей товарной специализации" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Неспециализированный непродовольственный магазин" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Торговые павильоны" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Аптека, аптечный ларек" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Здания, помещения учебно-воспитательного назначения">
+                <TreeViewItem Header="Общеобразовательная организация (школа, гимназия, лицей, колледж, школа-интернат, детский дом и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Образовательная организация высшего образования" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Профессиональная образовательная организация" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Специализированная организация (аэроклуб, автошкола, музыкальная школа, спортивная школа, клуб и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Прочие объекты учебно-воспитательного назначения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Дошкольная образовательная организация (детский сад, ясли, дом ребенка и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Внешкольная организация (оздоровительные лагеря, дачи и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Здания, помещения здравоохранения и социального обслуживания населения">
+                <TreeViewItem Header="Лечебное учреждение со стационаром (медицинский центр, больница, госпиталь, клиника, родильный дом и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Амбулаторно-поликлиническое и медико-оздоровительное учреждение (амбулатория, медпункт, поликлиника, диспансер, консультация)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Санитарно-эпидемиологическое учреждение" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Молочная кухня, станция переливания крови, скорой помощи и т.п." Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Учреждение социального обслуживания населения со стационаром (попечительское учреждение, дом-интернат для престарелых и инвалидов, психоневрологический интернат, геронтологический центр и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Медико-реабилитационное и коррекционное учреждение (профилакторий и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Учреждение социального обслуживания населения без стационара" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Прочие объекты здравоохранения и социального обслуживания населения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Здания, помещения сервисного обслуживания населения">
+                <TreeViewItem Header="Объект общественного питания" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Ветеринарное учреждение" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Сооружение, здание и помещение санитарно-бытового назначения (химчистка, прачечная и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Непроизводственное предприятие бытового, коммунального обслуживания населения и гражданских обрядов" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Прочие учреждения обслуживания населения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Баня, сауна предприятия, организации" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Учреждение и предприятие связи (почта, телефон, телеграф, АТС, узел связи и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Вокзалы всех видов транспорта" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Административные здания">
+                <TreeViewItem Header="Здание, сооружение радио- или телевизионного центра" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Здание вычислительного центра" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Здание научно-исследовательского или проектного института, проектного или конструкторского бюро" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Здание органа государственной власти или органа местного самоуправления" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Здание организации, предприятия, учреждения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Здание органа финансирования, кредитования и (или) страхования (банк, биржа, брокерская контора и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Здание суда, прокуратуры, нотариальной, адвокатской конторы и др." Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Здание другого правоохранительного органа" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Здание органа внутренних дел" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Прочие административные здания" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Здания, сооружения и помещения для культурно-досуговой деятельности населения и религиозных обрядов">
+                <TreeViewItem Header="Музей, выставка" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Библиотека, читальный зал" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Зрелищное учреждение (театр, кинотеатр, концертный зал, цирк и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Физкультурное, спортивное и физкультурно-досуговое учреждение (стадион, бассейн, манеж, тренажерный зал и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Клубное и досугово-развлекательное учреждение (бильярд, дискотека, зал игровых автоматов, видеосалон и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Дельфинарий, аквапарк, комплекс аттракционов" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Прочие объекты культурно-досуговой деятельности населения и религиозных обрядов" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Религиозная организация и учреждение для населения (собор, церковь, мечеть, синагога и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Здания и помещения для временного пребывания (проживания) людей.">
+                <TreeViewItem Header="Санаторий, пансионат, дом отдыха, учреждение туризма, круглогодичный лагерь для детей и юношества и т.д." Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Гостиница, мотель и т.п." Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Прочие объекты для временного пребывания (проживания) людей" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Общежитие (учебного заведения, организации, предприятия), спальный корпус интерната" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Другие объекты пожара (мусор в доме, неэксплуатируемое здание)">
+                <TreeViewItem Header="Прочие здания, сооружения и помещения общественного назначения" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Отдельно стоящая хозяйственная постройка (бытовка, вагончик, сарай, хозблок, будка и др.)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Неэксплуатируемое здание (сооружение)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Бесхозяйное здание" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Прочие объекты пожара" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Мусор в жилом доме" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Мусор в здании, сооружении (кроме жилого дома)" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+                <TreeViewItem Header="Носильные вещи (вещи на человеке), горючие вещества на теле человека" Selected="TVItemAllItem_Selected" Unselected="TVItemAllItem_Unselected"/>
+            </TreeViewItem>
+        </TreeView>
+        <StackPanel x:Name="SPanelOpenObject" Orientation="Vertical" VerticalAlignment="Top" Grid.Column="1" Margin="10" Visibility="Collapsed">
+            <TextBlock Text="Объект пожара" Margin="5" VerticalAlignment="Center"/>
+            <ComboBox Name="ComboOpenObjects"  Width="380">
+                <ComboBoxItem Content="Склад угля, сланца, торфа"/>
+                <ComboBoxItem Content="Склад кормов (сено, солома, силос, комбикорм и др.), в том числе отдельно стоящая скирда (стог)"/>
+                <ComboBoxItem Content="Лесной массив, лесопарк, лесополоса (лесные насаждения, кусты и др."/>
+                <ComboBoxItem Content="Склад сыпучих материалов, пыли и волокон (зерна, хлопка, порошков и др.)"/>
+                <ComboBoxItem Content="Поле зерновых культур" />
+                <ComboBoxItem Content="Поле технических культур"/>
+                <ComboBoxItem Content="Торфополе"/>
+                <ComboBoxItem Content="Открытая стоянка автотранспорта и другой техники" />
+                <ComboBoxItem Content="Склад легковоспламеняющихся, горючих жидкостей в таре"/>
+                <ComboBoxItem Content="Склад пожаровзрывоопасных газов" />
+                <ComboBoxItem Content="Склад химических веществ, минудобрений, ядохимикатов"/>
+                <ComboBoxItem Content="Прочий объект на открытой территории" />
+                <ComboBoxItem Content="Склад лесопиломатериалов" />
+                <ComboBoxItem Content="Склад сырья, промежуточной и готовой продукции на предприятии (запчастей, комплектующих и др.)" />
+                <ComboBoxItem Content="Склад промышленных товаров (автотранспортной и другой техники и др.)" />
+                <ComboBoxItem Content="Мусор вне территории жилой зоны и предприятия, организации, учреждения" />
+                <ComboBoxItem Content="Фруктовый сад" />
+                <ComboBoxItem Content="Плодово-ягодные кусты" />
+                <ComboBoxItem Content="Овощное поле"/>
+                <ComboBoxItem Content="Пасечные ульи (пасека)"/>
+                <ComboBoxItem Content="Мусор на территории жилой зоны (кроме территории домовладения)"/>
+                <ComboBoxItem Content="Мусор на территории предприятия, организации, учреждения"/>
+                <ComboBoxItem Content="Контейнер, бак, накопитель для мусора"/>
+                <ComboBoxItem Content="Дрова, поленница"/>
+                <ComboBoxItem Content="Отдельно стоящее дерево"/>
+                <ComboBoxItem Content="Бензоколонка"/>
+                <ComboBoxItem Content="Автомобильная газозаправочная установка"/>
+                <ComboBoxItem Content="Торфяник"/>
+                <ComboBoxItem Content="Мусор на территории домовладения"/>
+                <ComboBoxItem Content="Сухая трава (сено, камыш и т.д.)"/>
+                <ComboBoxItem Content="Стерня"/>
+                <ComboBoxItem Content="Пожнивные остатки"/>
+                <ComboBoxItem Content="Тополиный пух"/>
+                <ComboBoxItem Content="Торф на газонах и приусадебных участках"/>
+                <ComboBoxItem Content="Открытая автомойка"/>
+                <ComboBoxItem Content="Автомобильный, железнодорожный мост"/>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10" Grid.ColumnSpan="2" Grid.Row="1" >
+            <Button x:Name="BtnSave" IsEnabled="False" Content="{materialDesign:PackIcon Kind=Check}" Style="{StaticResource MaterialDesignFlatLightBgButton}" Click="BtnSave_Click"/>
+            <Button x:Name="BtnCancel" Content="{materialDesign:PackIcon Kind=Cancel}" Style="{StaticResource MaterialDesignFlatLightBgButton}" Margin="20,0" Click="BtnCancel_Click"/>
+        </StackPanel>
+        
+    </Grid>
+</Window>

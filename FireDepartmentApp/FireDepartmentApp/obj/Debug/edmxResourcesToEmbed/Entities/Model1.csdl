@@ -1,0 +1,730 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FireDepartModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AlignmentFoce">
+    <Key>
+      <PropertyRef Name="AlignmentFoceId" />
+    </Key>
+    <Property Name="AlignmentFoceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AlignmentFoceName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BarrelType">
+    <Key>
+      <PropertyRef Name="BarrelTypeId" />
+    </Key>
+    <Property Name="BarrelTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BarrelTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="FireInfoes" Relationship="Self.FK_FireInfo_BarrelTypes" FromRole="BarrelTypes" ToRole="FireInfo" />
+  </EntityType>
+  <EntityType Name="Broadcast">
+    <Key>
+      <PropertyRef Name="BroadcastId" />
+    </Key>
+    <Property Name="BroadcastId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BroadcastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="FireInfoes" Relationship="Self.FK_FireInfo_Broadcasts" FromRole="Broadcasts" ToRole="FireInfo" />
+  </EntityType>
+  <EntityType Name="BurnType">
+    <Key>
+      <PropertyRef Name="BurnTypeId" />
+    </Key>
+    <Property Name="BurnTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BurnTypeName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="DepartureBurns" Relationship="Self.FK_DepartureBurns_BurnTypes" FromRole="BurnTypes" ToRole="DepartureBurns" />
+  </EntityType>
+  <EntityType Name="CombatArea">
+    <Key>
+      <PropertyRef Name="CombatAreaId" />
+    </Key>
+    <Property Name="CombatAreaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CombatAreaName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="FireInfoes" Relationship="Self.FK_FireInfo_CombatAreas" FromRole="CombatAreas" ToRole="FireInfo" />
+  </EntityType>
+  <EntityType Name="CombatDepForce">
+    <Key>
+      <PropertyRef Name="CombatDepForceId" />
+    </Key>
+    <Property Name="CombatDepForceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CombatDepForceName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DepartureArea">
+    <Key>
+      <PropertyRef Name="DepartureAreaId" />
+    </Key>
+    <Property Name="DepartureAreaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SettlementId" Type="Int32" Nullable="false" />
+    <Property Name="DepartureAreaName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Settlement" Relationship="Self.FK_DepartureAreas_Settlements" FromRole="DepartureAreas" ToRole="Settlements" />
+    <NavigationProperty Name="Departures" Relationship="Self.FK_Departures_DepartureAreas" FromRole="DepartureAreas" ToRole="Departures" />
+    <NavigationProperty Name="Subdivisions" Relationship="Self.FK_Subdivisions_DepartureAreas" FromRole="DepartureAreas" ToRole="Subdivisions" />
+  </EntityType>
+  <EntityType Name="DepartureBurn">
+    <Key>
+      <PropertyRef Name="DepartureBurnId" />
+    </Key>
+    <Property Name="DepartureBurnId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartureId" Type="Int32" Nullable="false" />
+    <Property Name="BurnTypeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BurnType" Relationship="Self.FK_DepartureBurns_BurnTypes" FromRole="DepartureBurns" ToRole="BurnTypes" />
+    <NavigationProperty Name="Departure" Relationship="Self.FK_DepartureBurns_Departures" FromRole="DepartureBurns" ToRole="Departures" />
+  </EntityType>
+  <EntityType Name="DeparturePosition">
+    <Key>
+      <PropertyRef Name="DeparturePositionId" />
+    </Key>
+    <Property Name="DeparturePositionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartureId" Type="Int32" Nullable="false" />
+    <Property Name="PositionTypeId" Type="Int32" Nullable="false" />
+    <Property Name="DateTimeArrival" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Departure" Relationship="Self.FK_DeparturePositions_Departures" FromRole="DeparturePositions" ToRole="Departures" />
+    <NavigationProperty Name="PositionType" Relationship="Self.FK_DeparturePositions_PositionTypes" FromRole="DeparturePositions" ToRole="PositionTypes" />
+  </EntityType>
+  <EntityType Name="Departure">
+    <Key>
+      <PropertyRef Name="DepartureId" />
+    </Key>
+    <Property Name="DepartureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateTimeDepart" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DepartureAreaId" Type="Int32" Nullable="false" />
+    <Property Name="StreetId" Type="Int32" Nullable="false" />
+    <Property Name="NumHouse" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NumCorp" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="NumAppart" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Landmark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicantPhone" Type="String" MaxLength="17" FixedLength="false" Unicode="true" />
+    <Property Name="AdditionalInfo" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ExternalSignsInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ExternalSignAddInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ThreatPeopleInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ThreatPeopleCount" Type="Byte" />
+    <Property Name="ThreatPeopleAddInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AffectedInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AffectedCount" Type="Byte" />
+    <Property Name="AffectedAddInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="StatePeopleInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StatePeopleAddInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PeopleLocationInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PeopleLocationAddInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ThreatFireInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ThreatFireAddInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NearbyObjectInfo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="NearbyObjectAddInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PlaceInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PlaceAddInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="BarrierInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BarrierAddInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="MeetMCSInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MeetMCSAddInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="WhyApplicantInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WhyApplicantAddInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FIOApplicant" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsFireContainment" Type="Boolean" Nullable="false" />
+    <Property Name="DateTimeFireContainment" Type="DateTime" Precision="3" />
+    <Property Name="IsOpenBurning" Type="Boolean" Nullable="false" />
+    <Property Name="DateTimeOpenBurn" Type="DateTime" Precision="3" />
+    <Property Name="IsAftermathFire" Type="Boolean" Nullable="false" />
+    <Property Name="DateTimeAftermath" Type="DateTime" Precision="3" />
+    <Property Name="FireAreaCount" Type="Int32" />
+    <Property Name="BarrelCount" Type="Int16" />
+    <NavigationProperty Name="DepartureArea" Relationship="Self.FK_Departures_DepartureAreas" FromRole="Departures" ToRole="DepartureAreas" />
+    <NavigationProperty Name="DepartureBurns" Relationship="Self.FK_DepartureBurns_Departures" FromRole="Departures" ToRole="DepartureBurns" />
+    <NavigationProperty Name="DeparturePositions" Relationship="Self.FK_DeparturePositions_Departures" FromRole="Departures" ToRole="DeparturePositions" />
+    <NavigationProperty Name="DepartureSubdivisions" Relationship="Self.FK_DepartureDivisions_Departures" FromRole="Departures" ToRole="DepartureSubdivisions" />
+    <NavigationProperty Name="Street" Relationship="Self.FK_Departures_Streets" FromRole="Departures" ToRole="Streets" />
+    <NavigationProperty Name="DepartureServices" Relationship="Self.FK_DepartureServices_Departures" FromRole="Departures" ToRole="DepartureServices" />
+    <NavigationProperty Name="FireInfoes" Relationship="Self.FK_FireInfo_Departures" FromRole="Departures" ToRole="FireInfo" />
+  </EntityType>
+  <EntityType Name="DepartureService">
+    <Key>
+      <PropertyRef Name="DepartureServiceId" />
+    </Key>
+    <Property Name="DepartureServiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountPeople" Type="Int16" />
+    <Property Name="CountTechnics" Type="Int16" />
+    <Property Name="ServiceTypeId" Type="Int32" Nullable="false" />
+    <Property Name="DepartureId" Type="Int32" Nullable="false" />
+    <Property Name="DateTimeDeparture" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTimeArrival" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Departure" Relationship="Self.FK_DepartureServices_Departures" FromRole="DepartureServices" ToRole="Departures" />
+    <NavigationProperty Name="ServiceType" Relationship="Self.FK_DepartureServices_ServiceTypes" FromRole="DepartureServices" ToRole="ServiceTypes" />
+  </EntityType>
+  <EntityType Name="DepartureSubdivision">
+    <Key>
+      <PropertyRef Name="DepartureSubdivisionId" />
+    </Key>
+    <Property Name="DepartureSubdivisionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubdivisionId" Type="Int32" Nullable="false" />
+    <Property Name="DepartureId" Type="Int32" Nullable="false" />
+    <Property Name="DateTimeDeparture" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTimeArrival" Type="DateTime" Precision="3" />
+    <Property Name="CountPeople" Type="Int16" />
+    <NavigationProperty Name="Departure" Relationship="Self.FK_DepartureDivisions_Departures" FromRole="DepartureSubdivisions" ToRole="Departures" />
+    <NavigationProperty Name="Subdivision" Relationship="Self.FK_DepartureSubdivisions_Subdivisions" FromRole="DepartureSubdivisions" ToRole="Subdivisions" />
+  </EntityType>
+  <EntityType Name="Division">
+    <Key>
+      <PropertyRef Name="DivisionId" />
+    </Key>
+    <Property Name="DivisionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DivisionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DivisionDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Subdivisions" Relationship="Self.FK_Subdivisions_Divisions" FromRole="Divisions" ToRole="Subdivisions" />
+    <NavigationProperty Name="TechnicDivisions" Relationship="Self.FK_TechnicDivisions_Divisions" FromRole="Divisions" ToRole="TechnicDivisions" />
+  </EntityType>
+  <EntityType Name="FireInfo">
+    <Key>
+      <PropertyRef Name="FireInfoId" />
+    </Key>
+    <Property Name="FireInfoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateTimeEntry" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DepartureId" Type="Int32" Nullable="false" />
+    <Property Name="BroadcastId" Type="Int32" />
+    <Property Name="BarrelTypeId" Type="Int32" />
+    <Property Name="BarrelCount" Type="Byte" />
+    <Property Name="CombatAreaId" Type="Int32" />
+    <Property Name="MissionTypeId" Type="Int32" />
+    <Property Name="WorkAreaId" Type="Int32" />
+    <Property Name="InfoPlace" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="WorkVariety" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="AddInfo" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="FireAreaCount" Type="Int32" />
+    <NavigationProperty Name="BarrelType" Relationship="Self.FK_FireInfo_BarrelTypes" FromRole="FireInfo" ToRole="BarrelTypes" />
+    <NavigationProperty Name="Broadcast" Relationship="Self.FK_FireInfo_Broadcasts" FromRole="FireInfo" ToRole="Broadcasts" />
+    <NavigationProperty Name="CombatArea" Relationship="Self.FK_FireInfo_CombatAreas" FromRole="FireInfo" ToRole="CombatAreas" />
+    <NavigationProperty Name="Departure" Relationship="Self.FK_FireInfo_Departures" FromRole="FireInfo" ToRole="Departures" />
+    <NavigationProperty Name="MissionType" Relationship="Self.FK_FireInfo_MissionTypes" FromRole="FireInfo" ToRole="MissionTypes" />
+    <NavigationProperty Name="WorkArea" Relationship="Self.FK_FireInfo_WorkAreas" FromRole="FireInfo" ToRole="WorkAreas" />
+    <NavigationProperty Name="FireInfoSubdivisions" Relationship="Self.FK_FireInfoSubdivisions_FireInfo" FromRole="FireInfo" ToRole="FireInfoSubdivisions" />
+  </EntityType>
+  <EntityType Name="FireInfoSubdivision">
+    <Key>
+      <PropertyRef Name="FireInfoSubdivisionId" />
+    </Key>
+    <Property Name="FireInfoSubdivisionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FireInfoId" Type="Int32" />
+    <Property Name="SubdivisionId" Type="Int32" />
+    <NavigationProperty Name="FireInfo" Relationship="Self.FK_FireInfoSubdivisions_FireInfo" FromRole="FireInfoSubdivisions" ToRole="FireInfo" />
+    <NavigationProperty Name="Subdivision" Relationship="Self.FK_FireInfoSubdivisions_Subdivisions" FromRole="FireInfoSubdivisions" ToRole="Subdivisions" />
+  </EntityType>
+  <EntityType Name="MissionType">
+    <Key>
+      <PropertyRef Name="MissionTypeId" />
+    </Key>
+    <Property Name="MissionTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MissionTypeName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MissionTypeDescription" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="FireInfoes" Relationship="Self.FK_FireInfo_MissionTypes" FromRole="MissionTypes" ToRole="FireInfo" />
+  </EntityType>
+  <EntityType Name="PositionType">
+    <Key>
+      <PropertyRef Name="PositionTypeId" />
+    </Key>
+    <Property Name="PositionTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PositionTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PositionTypeDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DeparturePositions" Relationship="Self.FK_DeparturePositions_PositionTypes" FromRole="PositionTypes" ToRole="DeparturePositions" />
+  </EntityType>
+  <EntityType Name="ServiceType">
+    <Key>
+      <PropertyRef Name="ServiceTypeId" />
+    </Key>
+    <Property Name="ServiceTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceTypeName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="DepartureServices" Relationship="Self.FK_DepartureServices_ServiceTypes" FromRole="ServiceTypes" ToRole="DepartureServices" />
+  </EntityType>
+  <EntityType Name="Settlement">
+    <Key>
+      <PropertyRef Name="SettlementId" />
+    </Key>
+    <Property Name="SettlementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SettlementName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="DepartureAreas" Relationship="Self.FK_DepartureAreas_Settlements" FromRole="Settlements" ToRole="DepartureAreas" />
+  </EntityType>
+  <EntityType Name="Street">
+    <Key>
+      <PropertyRef Name="StreetId" />
+    </Key>
+    <Property Name="StreetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StreetName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Departures" Relationship="Self.FK_Departures_Streets" FromRole="Streets" ToRole="Departures" />
+  </EntityType>
+  <EntityType Name="Subdivision">
+    <Key>
+      <PropertyRef Name="SubdivisionId" />
+    </Key>
+    <Property Name="SubdivisionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DivisionId" Type="Int32" Nullable="false" />
+    <Property Name="TechnicId" Type="Int32" Nullable="false" />
+    <Property Name="DepartureAreaId" Type="Int32" Nullable="false" />
+    <Property Name="FireRank" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="DepartureArea" Relationship="Self.FK_Subdivisions_DepartureAreas" FromRole="Subdivisions" ToRole="DepartureAreas" />
+    <NavigationProperty Name="DepartureSubdivisions" Relationship="Self.FK_DepartureSubdivisions_Subdivisions" FromRole="Subdivisions" ToRole="DepartureSubdivisions" />
+    <NavigationProperty Name="Division" Relationship="Self.FK_Subdivisions_Divisions" FromRole="Subdivisions" ToRole="Divisions" />
+    <NavigationProperty Name="FireInfoSubdivisions" Relationship="Self.FK_FireInfoSubdivisions_Subdivisions" FromRole="Subdivisions" ToRole="FireInfoSubdivisions" />
+    <NavigationProperty Name="Technic" Relationship="Self.FK_Subdivisions_Technics" FromRole="Subdivisions" ToRole="Technics" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TechnicDivision">
+    <Key>
+      <PropertyRef Name="TechnicDivisionId" />
+    </Key>
+    <Property Name="TechnicDivisionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TechnicId" Type="Int32" Nullable="false" />
+    <Property Name="DivisionId" Type="Int32" Nullable="false" />
+    <Property Name="CountTechnic" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="Division" Relationship="Self.FK_TechnicDivisions_Divisions" FromRole="TechnicDivisions" ToRole="Divisions" />
+    <NavigationProperty Name="Technic" Relationship="Self.FK_TechnicDivisions_Technics" FromRole="TechnicDivisions" ToRole="Technics" />
+  </EntityType>
+  <EntityType Name="Technic">
+    <Key>
+      <PropertyRef Name="TechnicId" />
+    </Key>
+    <Property Name="TechnicId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TechnicName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TechnicDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="TechnicImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Subdivisions" Relationship="Self.FK_Subdivisions_Technics" FromRole="Technics" ToRole="Subdivisions" />
+    <NavigationProperty Name="TechnicDivisions" Relationship="Self.FK_TechnicDivisions_Technics" FromRole="Technics" ToRole="TechnicDivisions" />
+  </EntityType>
+  <EntityType Name="WorkArea">
+    <Key>
+      <PropertyRef Name="WorkAreaId" />
+    </Key>
+    <Property Name="WorkAreaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WorkAreaName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="FireInfoes" Relationship="Self.FK_FireInfo_WorkAreas" FromRole="WorkAreas" ToRole="FireInfo" />
+  </EntityType>
+  <Association Name="FK_FireInfo_BarrelTypes">
+    <End Role="BarrelTypes" Type="Self.BarrelType" Multiplicity="0..1" />
+    <End Role="FireInfo" Type="Self.FireInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BarrelTypes">
+        <PropertyRef Name="BarrelTypeId" />
+      </Principal>
+      <Dependent Role="FireInfo">
+        <PropertyRef Name="BarrelTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FireInfo_Broadcasts">
+    <End Role="Broadcasts" Type="Self.Broadcast" Multiplicity="0..1" />
+    <End Role="FireInfo" Type="Self.FireInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Broadcasts">
+        <PropertyRef Name="BroadcastId" />
+      </Principal>
+      <Dependent Role="FireInfo">
+        <PropertyRef Name="BroadcastId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartureBurns_BurnTypes">
+    <End Role="BurnTypes" Type="Self.BurnType" Multiplicity="1" />
+    <End Role="DepartureBurns" Type="Self.DepartureBurn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BurnTypes">
+        <PropertyRef Name="BurnTypeId" />
+      </Principal>
+      <Dependent Role="DepartureBurns">
+        <PropertyRef Name="BurnTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FireInfo_CombatAreas">
+    <End Role="CombatAreas" Type="Self.CombatArea" Multiplicity="0..1" />
+    <End Role="FireInfo" Type="Self.FireInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CombatAreas">
+        <PropertyRef Name="CombatAreaId" />
+      </Principal>
+      <Dependent Role="FireInfo">
+        <PropertyRef Name="CombatAreaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartureAreas_Settlements">
+    <End Role="Settlements" Type="Self.Settlement" Multiplicity="1" />
+    <End Role="DepartureAreas" Type="Self.DepartureArea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Settlements">
+        <PropertyRef Name="SettlementId" />
+      </Principal>
+      <Dependent Role="DepartureAreas">
+        <PropertyRef Name="SettlementId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Departures_DepartureAreas">
+    <End Role="DepartureAreas" Type="Self.DepartureArea" Multiplicity="1" />
+    <End Role="Departures" Type="Self.Departure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DepartureAreas">
+        <PropertyRef Name="DepartureAreaId" />
+      </Principal>
+      <Dependent Role="Departures">
+        <PropertyRef Name="DepartureAreaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subdivisions_DepartureAreas">
+    <End Role="DepartureAreas" Type="Self.DepartureArea" Multiplicity="1" />
+    <End Role="Subdivisions" Type="Self.Subdivision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DepartureAreas">
+        <PropertyRef Name="DepartureAreaId" />
+      </Principal>
+      <Dependent Role="Subdivisions">
+        <PropertyRef Name="DepartureAreaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartureBurns_Departures">
+    <End Role="Departures" Type="Self.Departure" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DepartureBurns" Type="Self.DepartureBurn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departures">
+        <PropertyRef Name="DepartureId" />
+      </Principal>
+      <Dependent Role="DepartureBurns">
+        <PropertyRef Name="DepartureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeparturePositions_Departures">
+    <End Role="Departures" Type="Self.Departure" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DeparturePositions" Type="Self.DeparturePosition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departures">
+        <PropertyRef Name="DepartureId" />
+      </Principal>
+      <Dependent Role="DeparturePositions">
+        <PropertyRef Name="DepartureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeparturePositions_PositionTypes">
+    <End Role="PositionTypes" Type="Self.PositionType" Multiplicity="1" />
+    <End Role="DeparturePositions" Type="Self.DeparturePosition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PositionTypes">
+        <PropertyRef Name="PositionTypeId" />
+      </Principal>
+      <Dependent Role="DeparturePositions">
+        <PropertyRef Name="PositionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartureDivisions_Departures">
+    <End Role="Departures" Type="Self.Departure" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DepartureSubdivisions" Type="Self.DepartureSubdivision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departures">
+        <PropertyRef Name="DepartureId" />
+      </Principal>
+      <Dependent Role="DepartureSubdivisions">
+        <PropertyRef Name="DepartureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Departures_Streets">
+    <End Role="Streets" Type="Self.Street" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Departures" Type="Self.Departure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Streets">
+        <PropertyRef Name="StreetId" />
+      </Principal>
+      <Dependent Role="Departures">
+        <PropertyRef Name="StreetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartureServices_Departures">
+    <End Role="Departures" Type="Self.Departure" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DepartureServices" Type="Self.DepartureService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departures">
+        <PropertyRef Name="DepartureId" />
+      </Principal>
+      <Dependent Role="DepartureServices">
+        <PropertyRef Name="DepartureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FireInfo_Departures">
+    <End Role="Departures" Type="Self.Departure" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FireInfo" Type="Self.FireInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departures">
+        <PropertyRef Name="DepartureId" />
+      </Principal>
+      <Dependent Role="FireInfo">
+        <PropertyRef Name="DepartureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartureServices_ServiceTypes">
+    <End Role="ServiceTypes" Type="Self.ServiceType" Multiplicity="1" />
+    <End Role="DepartureServices" Type="Self.DepartureService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServiceTypes">
+        <PropertyRef Name="ServiceTypeId" />
+      </Principal>
+      <Dependent Role="DepartureServices">
+        <PropertyRef Name="ServiceTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartureSubdivisions_Subdivisions">
+    <End Role="Subdivisions" Type="Self.Subdivision" Multiplicity="1" />
+    <End Role="DepartureSubdivisions" Type="Self.DepartureSubdivision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subdivisions">
+        <PropertyRef Name="SubdivisionId" />
+      </Principal>
+      <Dependent Role="DepartureSubdivisions">
+        <PropertyRef Name="SubdivisionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subdivisions_Divisions">
+    <End Role="Divisions" Type="Self.Division" Multiplicity="1" />
+    <End Role="Subdivisions" Type="Self.Subdivision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Divisions">
+        <PropertyRef Name="DivisionId" />
+      </Principal>
+      <Dependent Role="Subdivisions">
+        <PropertyRef Name="DivisionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TechnicDivisions_Divisions">
+    <End Role="Divisions" Type="Self.Division" Multiplicity="1" />
+    <End Role="TechnicDivisions" Type="Self.TechnicDivision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Divisions">
+        <PropertyRef Name="DivisionId" />
+      </Principal>
+      <Dependent Role="TechnicDivisions">
+        <PropertyRef Name="DivisionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FireInfo_MissionTypes">
+    <End Role="MissionTypes" Type="Self.MissionType" Multiplicity="0..1" />
+    <End Role="FireInfo" Type="Self.FireInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MissionTypes">
+        <PropertyRef Name="MissionTypeId" />
+      </Principal>
+      <Dependent Role="FireInfo">
+        <PropertyRef Name="MissionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FireInfo_WorkAreas">
+    <End Role="WorkAreas" Type="Self.WorkArea" Multiplicity="0..1" />
+    <End Role="FireInfo" Type="Self.FireInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkAreas">
+        <PropertyRef Name="WorkAreaId" />
+      </Principal>
+      <Dependent Role="FireInfo">
+        <PropertyRef Name="WorkAreaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FireInfoSubdivisions_FireInfo">
+    <End Role="FireInfo" Type="Self.FireInfo" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FireInfoSubdivisions" Type="Self.FireInfoSubdivision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FireInfo">
+        <PropertyRef Name="FireInfoId" />
+      </Principal>
+      <Dependent Role="FireInfoSubdivisions">
+        <PropertyRef Name="FireInfoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FireInfoSubdivisions_Subdivisions">
+    <End Role="Subdivisions" Type="Self.Subdivision" Multiplicity="0..1" />
+    <End Role="FireInfoSubdivisions" Type="Self.FireInfoSubdivision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subdivisions">
+        <PropertyRef Name="SubdivisionId" />
+      </Principal>
+      <Dependent Role="FireInfoSubdivisions">
+        <PropertyRef Name="SubdivisionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subdivisions_Technics">
+    <End Role="Technics" Type="Self.Technic" Multiplicity="1" />
+    <End Role="Subdivisions" Type="Self.Subdivision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Technics">
+        <PropertyRef Name="TechnicId" />
+      </Principal>
+      <Dependent Role="Subdivisions">
+        <PropertyRef Name="TechnicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TechnicDivisions_Technics">
+    <End Role="Technics" Type="Self.Technic" Multiplicity="1" />
+    <End Role="TechnicDivisions" Type="Self.TechnicDivision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Technics">
+        <PropertyRef Name="TechnicId" />
+      </Principal>
+      <Dependent Role="TechnicDivisions">
+        <PropertyRef Name="TechnicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FireDepartEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AlignmentFoces" EntityType="Self.AlignmentFoce" />
+    <EntitySet Name="BarrelTypes" EntityType="Self.BarrelType" />
+    <EntitySet Name="Broadcasts" EntityType="Self.Broadcast" />
+    <EntitySet Name="BurnTypes" EntityType="Self.BurnType" />
+    <EntitySet Name="CombatAreas" EntityType="Self.CombatArea" />
+    <EntitySet Name="CombatDepForces" EntityType="Self.CombatDepForce" />
+    <EntitySet Name="DepartureAreas" EntityType="Self.DepartureArea" />
+    <EntitySet Name="DepartureBurns" EntityType="Self.DepartureBurn" />
+    <EntitySet Name="DeparturePositions" EntityType="Self.DeparturePosition" />
+    <EntitySet Name="Departures" EntityType="Self.Departure" />
+    <EntitySet Name="DepartureServices" EntityType="Self.DepartureService" />
+    <EntitySet Name="DepartureSubdivisions" EntityType="Self.DepartureSubdivision" />
+    <EntitySet Name="Divisions" EntityType="Self.Division" />
+    <EntitySet Name="FireInfoes" EntityType="Self.FireInfo" />
+    <EntitySet Name="FireInfoSubdivisions" EntityType="Self.FireInfoSubdivision" />
+    <EntitySet Name="MissionTypes" EntityType="Self.MissionType" />
+    <EntitySet Name="PositionTypes" EntityType="Self.PositionType" />
+    <EntitySet Name="ServiceTypes" EntityType="Self.ServiceType" />
+    <EntitySet Name="Settlements" EntityType="Self.Settlement" />
+    <EntitySet Name="Streets" EntityType="Self.Street" />
+    <EntitySet Name="Subdivisions" EntityType="Self.Subdivision" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TechnicDivisions" EntityType="Self.TechnicDivision" />
+    <EntitySet Name="Technics" EntityType="Self.Technic" />
+    <EntitySet Name="WorkAreas" EntityType="Self.WorkArea" />
+    <AssociationSet Name="FK_FireInfo_BarrelTypes" Association="Self.FK_FireInfo_BarrelTypes">
+      <End Role="BarrelTypes" EntitySet="BarrelTypes" />
+      <End Role="FireInfo" EntitySet="FireInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FireInfo_Broadcasts" Association="Self.FK_FireInfo_Broadcasts">
+      <End Role="Broadcasts" EntitySet="Broadcasts" />
+      <End Role="FireInfo" EntitySet="FireInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartureBurns_BurnTypes" Association="Self.FK_DepartureBurns_BurnTypes">
+      <End Role="BurnTypes" EntitySet="BurnTypes" />
+      <End Role="DepartureBurns" EntitySet="DepartureBurns" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FireInfo_CombatAreas" Association="Self.FK_FireInfo_CombatAreas">
+      <End Role="CombatAreas" EntitySet="CombatAreas" />
+      <End Role="FireInfo" EntitySet="FireInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartureAreas_Settlements" Association="Self.FK_DepartureAreas_Settlements">
+      <End Role="Settlements" EntitySet="Settlements" />
+      <End Role="DepartureAreas" EntitySet="DepartureAreas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Departures_DepartureAreas" Association="Self.FK_Departures_DepartureAreas">
+      <End Role="DepartureAreas" EntitySet="DepartureAreas" />
+      <End Role="Departures" EntitySet="Departures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subdivisions_DepartureAreas" Association="Self.FK_Subdivisions_DepartureAreas">
+      <End Role="DepartureAreas" EntitySet="DepartureAreas" />
+      <End Role="Subdivisions" EntitySet="Subdivisions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartureBurns_Departures" Association="Self.FK_DepartureBurns_Departures">
+      <End Role="Departures" EntitySet="Departures" />
+      <End Role="DepartureBurns" EntitySet="DepartureBurns" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeparturePositions_Departures" Association="Self.FK_DeparturePositions_Departures">
+      <End Role="Departures" EntitySet="Departures" />
+      <End Role="DeparturePositions" EntitySet="DeparturePositions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeparturePositions_PositionTypes" Association="Self.FK_DeparturePositions_PositionTypes">
+      <End Role="PositionTypes" EntitySet="PositionTypes" />
+      <End Role="DeparturePositions" EntitySet="DeparturePositions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartureDivisions_Departures" Association="Self.FK_DepartureDivisions_Departures">
+      <End Role="Departures" EntitySet="Departures" />
+      <End Role="DepartureSubdivisions" EntitySet="DepartureSubdivisions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Departures_Streets" Association="Self.FK_Departures_Streets">
+      <End Role="Streets" EntitySet="Streets" />
+      <End Role="Departures" EntitySet="Departures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartureServices_Departures" Association="Self.FK_DepartureServices_Departures">
+      <End Role="Departures" EntitySet="Departures" />
+      <End Role="DepartureServices" EntitySet="DepartureServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FireInfo_Departures" Association="Self.FK_FireInfo_Departures">
+      <End Role="Departures" EntitySet="Departures" />
+      <End Role="FireInfo" EntitySet="FireInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartureServices_ServiceTypes" Association="Self.FK_DepartureServices_ServiceTypes">
+      <End Role="ServiceTypes" EntitySet="ServiceTypes" />
+      <End Role="DepartureServices" EntitySet="DepartureServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartureSubdivisions_Subdivisions" Association="Self.FK_DepartureSubdivisions_Subdivisions">
+      <End Role="Subdivisions" EntitySet="Subdivisions" />
+      <End Role="DepartureSubdivisions" EntitySet="DepartureSubdivisions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subdivisions_Divisions" Association="Self.FK_Subdivisions_Divisions">
+      <End Role="Divisions" EntitySet="Divisions" />
+      <End Role="Subdivisions" EntitySet="Subdivisions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TechnicDivisions_Divisions" Association="Self.FK_TechnicDivisions_Divisions">
+      <End Role="Divisions" EntitySet="Divisions" />
+      <End Role="TechnicDivisions" EntitySet="TechnicDivisions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FireInfo_MissionTypes" Association="Self.FK_FireInfo_MissionTypes">
+      <End Role="MissionTypes" EntitySet="MissionTypes" />
+      <End Role="FireInfo" EntitySet="FireInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FireInfo_WorkAreas" Association="Self.FK_FireInfo_WorkAreas">
+      <End Role="WorkAreas" EntitySet="WorkAreas" />
+      <End Role="FireInfo" EntitySet="FireInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FireInfoSubdivisions_FireInfo" Association="Self.FK_FireInfoSubdivisions_FireInfo">
+      <End Role="FireInfo" EntitySet="FireInfoes" />
+      <End Role="FireInfoSubdivisions" EntitySet="FireInfoSubdivisions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FireInfoSubdivisions_Subdivisions" Association="Self.FK_FireInfoSubdivisions_Subdivisions">
+      <End Role="Subdivisions" EntitySet="Subdivisions" />
+      <End Role="FireInfoSubdivisions" EntitySet="FireInfoSubdivisions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subdivisions_Technics" Association="Self.FK_Subdivisions_Technics">
+      <End Role="Technics" EntitySet="Technics" />
+      <End Role="Subdivisions" EntitySet="Subdivisions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TechnicDivisions_Technics" Association="Self.FK_TechnicDivisions_Technics">
+      <End Role="Technics" EntitySet="Technics" />
+      <End Role="TechnicDivisions" EntitySet="TechnicDivisions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
